@@ -1,0 +1,461 @@
+{
+  "id": "iitb_nexus_complex",
+  "name": "NEXUS Innovation Complex - IIT Bombay",
+  "code": "IITB-NC-01",
+  "institution": "Indian Institute of Technology Bombay",
+  "total_floors": 2,
+  "floors": [
+    {
+      "id": 1,
+      "name": "Ground Floor (Level 1)",
+      "elevation": 0.0,
+      "rooms": [
+        {
+          "id": "f1_room_reception",
+          "name": "Main Reception & Visitor Hub",
+          "floor_id": 1,
+          "category": "Reception",
+          "poi_id": "poi_reception",
+          "area_sqm": 85.0,
+          "color_code": "#00F2FE",
+          "bounds": [
+            {"x": -8.0, "y": 0.0, "z": 12.0},
+            {"x": 8.0, "y": 0.0, "z": 12.0},
+            {"x": 8.0, "y": 0.0, "z": 24.0},
+            {"x": -8.0, "y": 0.0, "z": 24.0}
+          ]
+        },
+        {
+          "id": "f1_room_seminar",
+          "name": "Aryabhata Seminar Auditorium",
+          "floor_id": 1,
+          "category": "Classroom",
+          "poi_id": "poi_seminar_hall",
+          "area_sqm": 160.0,
+          "color_code": "#7928CA",
+          "bounds": [
+            {"x": 12.0, "y": 0.0, "z": -10.0},
+            {"x": 28.0, "y": 0.0, "z": -10.0},
+            {"x": 28.0, "y": 0.0, "z": 10.0},
+            {"x": 12.0, "y": 0.0, "z": 10.0}
+          ]
+        },
+        {
+          "id": "f1_room_robotics",
+          "name": "Robotics & Autonomous Systems Lab",
+          "floor_id": 1,
+          "category": "Laboratory",
+          "poi_id": "poi_robotics_lab",
+          "area_sqm": 140.0,
+          "color_code": "#38EF7D",
+          "bounds": [
+            {"x": -28.0, "y": 0.0, "z": -10.0},
+            {"x": -12.0, "y": 0.0, "z": -10.0},
+            {"x": -12.0, "y": 0.0, "z": 10.0},
+            {"x": -28.0, "y": 0.0, "z": 10.0}
+          ]
+        },
+        {
+          "id": "f1_room_cafe",
+          "name": "Techfest Student Cafe & Lounge",
+          "floor_id": 1,
+          "category": "Cafeteria",
+          "poi_id": "poi_cafe",
+          "area_sqm": 110.0,
+          "color_code": "#F6AD55",
+          "bounds": [
+            {"x": 12.0, "y": 0.0, "z": 12.0},
+            {"x": 26.0, "y": 0.0, "z": 12.0},
+            {"x": 26.0, "y": 0.0, "z": 24.0},
+            {"x": 12.0, "y": 0.0, "z": 24.0}
+          ]
+        },
+        {
+          "id": "f1_room_washroom",
+          "name": "Ground Floor Restrooms (Accessible)",
+          "floor_id": 1,
+          "category": "Washroom",
+          "poi_id": "poi_f1_washroom",
+          "area_sqm": 45.0,
+          "color_code": "#4FD1C5",
+          "bounds": [
+            {"x": -26.0, "y": 0.0, "z": 12.0},
+            {"x": -12.0, "y": 0.0, "z": 12.0},
+            {"x": -12.0, "y": 0.0, "z": 20.0},
+            {"x": -26.0, "y": 0.0, "z": 20.0}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Second Floor (Level 2)",
+      "elevation": 4.0,
+      "rooms": [
+        {
+          "id": "f2_room_complab",
+          "name": "Computer Lab 204 (AI & 3D Vision)",
+          "floor_id": 2,
+          "category": "Laboratory",
+          "poi_id": "poi_computer_lab",
+          "area_sqm": 150.0,
+          "color_code": "#00C8FF",
+          "bounds": [
+            {"x": 12.0, "y": 4.0, "z": -10.0},
+            {"x": 28.0, "y": 4.0, "z": -10.0},
+            {"x": 28.0, "y": 4.0, "z": 10.0},
+            {"x": 12.0, "y": 4.0, "z": 10.0}
+          ]
+        },
+        {
+          "id": "f2_room_faculty",
+          "name": "Faculty Research & Mentors Cabin",
+          "floor_id": 2,
+          "category": "Faculty Room",
+          "poi_id": "poi_faculty_lounge",
+          "area_sqm": 90.0,
+          "color_code": "#B794F4",
+          "bounds": [
+            {"x": -28.0, "y": 4.0, "z": -10.0},
+            {"x": -12.0, "y": 4.0, "z": -10.0},
+            {"x": -12.0, "y": 4.0, "z": 6.0},
+            {"x": -28.0, "y": 4.0, "z": 6.0}
+          ]
+        },
+        {
+          "id": "f2_room_classroom",
+          "name": "Smart Classroom 201",
+          "floor_id": 2,
+          "category": "Classroom",
+          "poi_id": "poi_classroom_201",
+          "area_sqm": 120.0,
+          "color_code": "#63B3ED",
+          "bounds": [
+            {"x": -28.0, "y": 4.0, "z": 8.0},
+            {"x": -12.0, "y": 4.0, "z": 8.0},
+            {"x": -12.0, "y": 4.0, "z": 24.0},
+            {"x": -28.0, "y": 4.0, "z": 24.0}
+          ]
+        },
+        {
+          "id": "f2_room_washroom",
+          "name": "Level 2 Restrooms",
+          "floor_id": 2,
+          "category": "Washroom",
+          "poi_id": "poi_f2_washroom",
+          "area_sqm": 40.0,
+          "color_code": "#4FD1C5",
+          "bounds": [
+            {"x": 14.0, "y": 4.0, "z": 14.0},
+            {"x": 24.0, "y": 4.0, "z": 14.0},
+            {"x": 24.0, "y": 4.0, "z": 22.0},
+            {"x": 14.0, "y": 4.0, "z": 22.0}
+          ]
+        }
+      ]
+    }
+  ],
+  "pois": [
+    {
+      "id": "poi_entrance",
+      "name": "Main Entrance & Security Gate",
+      "category": "Entrance",
+      "floor_id": 1,
+      "room_number": "G-00",
+      "coordinates": {"x": 0.0, "y": 0.0, "z": 24.0},
+      "description": "Main primary entrance point for NEXUS complex, IIT Bombay. RFID security barrier and visitor registration kiosk.",
+      "accessibility": true,
+      "opening_hours": "24/7",
+      "current_status": "Open",
+      "related_facilities": ["Security Desk", "Visitor Badge Kiosk"],
+      "tags": ["entrance", "entry", "gate", "start", "security"]
+    },
+    {
+      "id": "poi_reception",
+      "name": "Central Reception & Help Desk",
+      "category": "Reception",
+      "floor_id": 1,
+      "room_number": "G-01",
+      "coordinates": {"x": 0.0, "y": 0.0, "z": 16.0},
+      "description": "Information and registration hub for Techfest competitions, campus guests, and building orientation.",
+      "accessibility": true,
+      "opening_hours": "08:00 - 20:00",
+      "current_status": "Open",
+      "related_facilities": ["Guest Waiting Lounge", "Digital Twin Information Kiosk"],
+      "tags": ["reception", "help", "information", "front desk", "lobby"]
+    },
+    {
+      "id": "poi_computer_lab",
+      "name": "Computer Lab 204 (AI & 3D Vision)",
+      "category": "Laboratory",
+      "floor_id": 2,
+      "room_number": "204",
+      "coordinates": {"x": 20.0, "y": 4.0, "z": 0.0},
+      "description": "High-performance GPU computing cluster, NeRF/Gaussian Splatting workstations, 3D vision research center.",
+      "accessibility": true,
+      "opening_hours": "08:30 - 22:00",
+      "current_status": "Open",
+      "related_facilities": ["GPU Cluster", "AR/VR Testing Arena", "Server Rack 3"],
+      "tags": ["computer lab", "lab 204", "pc lab", "ai lab", "workstations", "gpu", "coding"]
+    },
+    {
+      "id": "poi_robotics_lab",
+      "name": "Robotics & Autonomous Systems Lab",
+      "category": "Laboratory",
+      "floor_id": 1,
+      "room_number": "104",
+      "coordinates": {"x": -20.0, "y": 0.0, "z": 0.0},
+      "description": "Mobile robotics test arena, SLAM testing rig, quadrotor indoor flight cage, and electronics fabrication benches.",
+      "accessibility": true,
+      "opening_hours": "09:00 - 21:00",
+      "current_status": "Open",
+      "related_facilities": ["Hardware Workshop", "3D Printing Lab", "Oscilloscope Stations"],
+      "tags": ["robotics", "automation", "hardware", "drones", "electronics"]
+    },
+    {
+      "id": "poi_seminar_hall",
+      "name": "Aryabhata Seminar Auditorium",
+      "category": "Classroom",
+      "floor_id": 1,
+      "room_number": "101",
+      "coordinates": {"x": 20.0, "y": 0.0, "z": 0.0},
+      "description": "200-seat multi-tier smart auditorium with surround audio, dual 4K laser projection, and hybrid presentation tech.",
+      "accessibility": true,
+      "opening_hours": "08:00 - 19:00",
+      "current_status": "Open",
+      "related_facilities": ["Podium", "AV Control Room", "Green Room"],
+      "tags": ["seminar", "auditorium", "lecture hall", "presentation", "talks"]
+    },
+    {
+      "id": "poi_classroom_201",
+      "name": "Smart Classroom 201",
+      "category": "Classroom",
+      "floor_id": 2,
+      "room_number": "201",
+      "coordinates": {"x": -20.0, "y": 4.0, "z": 16.0},
+      "description": "Interactive smart board classroom with 60 ergonomic seats, group work pods, and video conferencing.",
+      "accessibility": true,
+      "opening_hours": "08:00 - 18:00",
+      "current_status": "Open",
+      "related_facilities": ["Digital Whiteboard", "Lecture Capture"],
+      "tags": ["classroom", "class", "lecture", "study", "201"]
+    },
+    {
+      "id": "poi_faculty_lounge",
+      "name": "Faculty Research & Mentors Cabin",
+      "category": "Faculty Room",
+      "floor_id": 2,
+      "room_number": "208",
+      "coordinates": {"x": -20.0, "y": 4.0, "z": -2.0},
+      "description": "Offices of supervising professors, visiting researchers, and IIT Bombay student project mentors.",
+      "accessibility": true,
+      "opening_hours": "09:30 - 17:30",
+      "current_status": "Open",
+      "related_facilities": ["Conference Table", "Tea Station"],
+      "tags": ["faculty", "professors", "mentors", "office", "cabin"]
+    },
+    {
+      "id": "poi_f1_washroom",
+      "name": "Ground Floor Restrooms (Accessible)",
+      "category": "Washroom",
+      "floor_id": 1,
+      "room_number": "G-WR",
+      "coordinates": {"x": -18.0, "y": 0.0, "z": 16.0},
+      "description": "Fully accessible male, female, and gender-neutral restrooms equipped with Braille signage and emergency alarms.",
+      "accessibility": true,
+      "opening_hours": "24/7",
+      "current_status": "Open",
+      "related_facilities": ["Water Cooler", "Baby Care"],
+      "tags": ["washroom", "restroom", "toilet", "bathroom", "water", "accessible"]
+    },
+    {
+      "id": "poi_f2_washroom",
+      "name": "Level 2 Restrooms",
+      "category": "Washroom",
+      "floor_id": 2,
+      "room_number": "2-WR",
+      "coordinates": {"x": 18.0, "y": 4.0, "z": 18.0},
+      "description": "Hygienic restrooms with touchless fixtures and drinking water dispenser.",
+      "accessibility": true,
+      "opening_hours": "24/7",
+      "current_status": "Open",
+      "related_facilities": ["Filtered Water Station"],
+      "tags": ["washroom", "restroom", "toilet", "bathroom", "water"]
+    },
+    {
+      "id": "poi_cafe",
+      "name": "Techfest Student Cafe & Lounge",
+      "category": "Cafeteria",
+      "floor_id": 1,
+      "room_number": "G-CF",
+      "coordinates": {"x": 18.0, "y": 0.0, "z": 18.0},
+      "description": "Refreshment zone serving coffee, artisanal snacks, sandwiches, and collaborative breakout seating.",
+      "accessibility": true,
+      "opening_hours": "07:30 - 23:00",
+      "current_status": "Open",
+      "related_facilities": ["Espresso Bar", "Outdoor Patio"],
+      "tags": ["cafe", "cafeteria", "food", "coffee", "canteen", "snacks"]
+    },
+    {
+      "id": "poi_elevator",
+      "name": "Central Elevator (Accessibility Priority)",
+      "category": "Elevator",
+      "floor_id": 1,
+      "room_number": "E-01",
+      "coordinates": {"x": 0.0, "y": 0.0, "z": 6.0},
+      "description": "High-capacity wheelchair-accessible glass elevator connecting Ground Floor and Level 2.",
+      "accessibility": true,
+      "opening_hours": "24/7",
+      "current_status": "Open",
+      "related_facilities": ["Audio Floor Announcements", "Braille Buttons"],
+      "tags": ["elevator", "lift", "accessible", "floor transit", "wheelchair"]
+    },
+    {
+      "id": "poi_stairs",
+      "name": "Grand Architectural Staircase",
+      "category": "Staircase",
+      "floor_id": 1,
+      "room_number": "ST-01",
+      "coordinates": {"x": 0.0, "y": 0.0, "z": -12.0},
+      "description": "Central wide architectural staircase connecting Ground Floor to Level 2. Non-slip granite steps with tactile guiding strip.",
+      "accessibility": false,
+      "opening_hours": "24/7",
+      "current_status": "Open",
+      "related_facilities": ["Tactile Paving", "Safety Handrails"],
+      "tags": ["stairs", "staircase", "steps", "walk up"]
+    },
+    {
+      "id": "poi_emergency_exit",
+      "name": "North Emergency Fire Exit",
+      "category": "Emergency Exit",
+      "floor_id": 1,
+      "room_number": "EX-N",
+      "coordinates": {"x": 0.0, "y": 0.0, "z": -22.0},
+      "description": "Push-bar emergency fire escape door leading directly to the outer assembly point with illuminated escape signage.",
+      "accessibility": true,
+      "opening_hours": "Emergency Only",
+      "current_status": "Open",
+      "related_facilities": ["Fire Extinguisher Station", "First Aid Kit", "Assembly Point Map"],
+      "tags": ["exit", "emergency", "fire exit", "escape", "evacuation"]
+    }
+  ],
+  "nodes": [
+    {"id": "n_f1_entrance", "name": "Main Entrance Door", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": 24.0}, "is_poi": true, "poi_id": "poi_entrance", "is_transit": false, "walkable": true},
+    {"id": "n_f1_vestibule", "name": "Entrance Vestibule", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": 20.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_reception", "name": "Reception Desk Front", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": 16.0}, "is_poi": true, "poi_id": "poi_reception", "is_transit": false, "walkable": true},
+    {"id": "n_f1_lobby_cross", "name": "Central Lobby Crossroads", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": 10.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_elevator", "name": "Level 1 Elevator Lobby", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": 6.0}, "is_poi": true, "poi_id": "poi_elevator", "is_transit": true, "transit_type": "elevator", "walkable": true},
+    {"id": "n_f1_atrium_center", "name": "Grand Atrium Center", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": 0.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_atrium_north", "name": "North Atrium Crossroads", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": -8.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_stairs", "name": "Level 1 Staircase Base", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": -12.0}, "is_poi": true, "poi_id": "poi_stairs", "is_transit": true, "transit_type": "stairs", "walkable": true},
+    {"id": "n_f1_north_corridor", "name": "North Exit Hallway", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": -18.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_exit", "name": "Emergency Exit North", "floor_id": 1, "coordinates": {"x": 0.0, "y": 0.0, "z": -22.0}, "is_poi": true, "poi_id": "poi_emergency_exit", "is_transit": false, "walkable": true},
+
+    {"id": "n_f1_east_hub", "name": "East Corridor Junction L1", "floor_id": 1, "coordinates": {"x": 8.0, "y": 0.0, "z": 10.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_cafe_door", "name": "Cafe Entrance", "floor_id": 1, "coordinates": {"x": 12.0, "y": 0.0, "z": 16.0}, "is_poi": true, "poi_id": "poi_cafe", "is_transit": false, "walkable": true},
+    {"id": "n_f1_east_corridor_mid", "name": "East Corridor Midpoint", "floor_id": 1, "coordinates": {"x": 8.0, "y": 0.0, "z": 0.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_seminar_door", "name": "Auditorium Main Door", "floor_id": 1, "coordinates": {"x": 12.0, "y": 0.0, "z": 0.0}, "is_poi": true, "poi_id": "poi_seminar_hall", "is_transit": false, "walkable": true},
+    {"id": "n_f1_east_north_hub", "name": "East-North Bypass L1", "floor_id": 1, "coordinates": {"x": 8.0, "y": 0.0, "z": -8.0}, "is_poi": false, "is_transit": false, "walkable": true},
+
+    {"id": "n_f1_west_hub", "name": "West Corridor Junction L1", "floor_id": 1, "coordinates": {"x": -8.0, "y": 0.0, "z": 10.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_washroom_door", "name": "Restroom Door L1", "floor_id": 1, "coordinates": {"x": -12.0, "y": 0.0, "z": 16.0}, "is_poi": true, "poi_id": "poi_f1_washroom", "is_transit": false, "walkable": true},
+    {"id": "n_f1_west_corridor_mid", "name": "West Corridor Midpoint", "floor_id": 1, "coordinates": {"x": -8.0, "y": 0.0, "z": 0.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f1_robotics_door", "name": "Robotics Lab Door", "floor_id": 1, "coordinates": {"x": -12.0, "y": 0.0, "z": 0.0}, "is_poi": true, "poi_id": "poi_robotics_lab", "is_transit": false, "walkable": true},
+    {"id": "n_f1_west_north_hub", "name": "West-North Bypass L1", "floor_id": 1, "coordinates": {"x": -8.0, "y": 0.0, "z": -8.0}, "is_poi": false, "is_transit": false, "walkable": true},
+
+    {"id": "n_f2_elevator", "name": "Level 2 Elevator Lobby", "floor_id": 2, "coordinates": {"x": 0.0, "y": 4.0, "z": 6.0}, "is_poi": false, "is_transit": true, "transit_type": "elevator", "walkable": true},
+    {"id": "n_f2_lobby_cross", "name": "Level 2 Central Crossroads", "floor_id": 2, "coordinates": {"x": 0.0, "y": 4.0, "z": 10.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_atrium_center", "name": "Level 2 Mezzanine Overlook", "floor_id": 2, "coordinates": {"x": 0.0, "y": 4.0, "z": 0.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_atrium_north", "name": "Level 2 North Crossroads", "floor_id": 2, "coordinates": {"x": 0.0, "y": 4.0, "z": -8.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_stairs", "name": "Level 2 Staircase Landing", "floor_id": 2, "coordinates": {"x": 0.0, "y": 4.0, "z": -12.0}, "is_poi": false, "is_transit": true, "transit_type": "stairs", "walkable": true},
+
+    {"id": "n_f2_east_hub", "name": "East Corridor Junction L2", "floor_id": 2, "coordinates": {"x": 8.0, "y": 4.0, "z": 10.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_washroom_door", "name": "Restroom Door L2", "floor_id": 2, "coordinates": {"x": 12.0, "y": 4.0, "z": 16.0}, "is_poi": true, "poi_id": "poi_f2_washroom", "is_transit": false, "walkable": true},
+    {"id": "n_f2_east_corridor_mid", "name": "East Corridor Midpoint L2", "floor_id": 2, "coordinates": {"x": 8.0, "y": 4.0, "z": 0.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_complab_door", "name": "Computer Lab 204 Door", "floor_id": 2, "coordinates": {"x": 12.0, "y": 4.0, "z": 0.0}, "is_poi": true, "poi_id": "poi_computer_lab", "is_transit": false, "walkable": true},
+    {"id": "n_f2_east_north_hub", "name": "East-North Corridor L2", "floor_id": 2, "coordinates": {"x": 8.0, "y": 4.0, "z": -8.0}, "is_poi": false, "is_transit": false, "walkable": true},
+
+    {"id": "n_f2_west_hub", "name": "West Corridor Junction L2", "floor_id": 2, "coordinates": {"x": -8.0, "y": 4.0, "z": 10.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_classroom_door", "name": "Classroom 201 Door", "floor_id": 2, "coordinates": {"x": -12.0, "y": 4.0, "z": 16.0}, "is_poi": true, "poi_id": "poi_classroom_201", "is_transit": false, "walkable": true},
+    {"id": "n_f2_west_corridor_mid", "name": "West Corridor Midpoint L2", "floor_id": 2, "coordinates": {"x": -8.0, "y": 4.0, "z": 0.0}, "is_poi": false, "is_transit": false, "walkable": true},
+    {"id": "n_f2_faculty_door", "name": "Faculty Cabin Door", "floor_id": 2, "coordinates": {"x": -12.0, "y": 4.0, "z": 0.0}, "is_poi": true, "poi_id": "poi_faculty_lounge", "is_transit": false, "walkable": true},
+    {"id": "n_f2_west_north_hub", "name": "West-North Corridor L2", "floor_id": 2, "coordinates": {"x": -8.0, "y": 4.0, "z": -8.0}, "is_poi": false, "is_transit": false, "walkable": true}
+  ],
+  "edges": [
+    {"id": "e_f1_ent_vest", "source_node_id": "n_f1_entrance", "target_node_id": "n_f1_vestibule", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_vest_rec", "source_node_id": "n_f1_vestibule", "target_node_id": "n_f1_reception", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_rec_lobby", "source_node_id": "n_f1_reception", "target_node_id": "n_f1_lobby_cross", "distance": 6.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_lobby_elev", "source_node_id": "n_f1_lobby_cross", "target_node_id": "n_f1_elevator", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_elev_atrium", "source_node_id": "n_f1_elevator", "target_node_id": "n_f1_atrium_center", "distance": 6.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_atrium_north", "source_node_id": "n_f1_atrium_center", "target_node_id": "n_f1_atrium_north", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_north_stairs", "source_node_id": "n_f1_atrium_north", "target_node_id": "n_f1_stairs", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": false, "is_blocked": false},
+    {"id": "e_f1_stairs_corr", "source_node_id": "n_f1_stairs", "target_node_id": "n_f1_north_corridor", "distance": 6.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_corr_exit", "source_node_id": "n_f1_north_corridor", "target_node_id": "n_f1_exit", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+
+    {"id": "e_f1_lobby_easthub", "source_node_id": "n_f1_lobby_cross", "target_node_id": "n_f1_east_hub", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_easthub_cafe", "source_node_id": "n_f1_east_hub", "target_node_id": "n_f1_cafe_door", "distance": 7.2, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_easthub_eastmid", "source_node_id": "n_f1_east_hub", "target_node_id": "n_f1_east_corridor_mid", "distance": 10.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_eastmid_seminar", "source_node_id": "n_f1_east_corridor_mid", "target_node_id": "n_f1_seminar_door", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_atrium_eastmid", "source_node_id": "n_f1_atrium_center", "target_node_id": "n_f1_east_corridor_mid", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_eastmid_eastnorth", "source_node_id": "n_f1_east_corridor_mid", "target_node_id": "n_f1_east_north_hub", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_eastnorth_atriumnorth", "source_node_id": "n_f1_east_north_hub", "target_node_id": "n_f1_atrium_north", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+
+    {"id": "e_f1_lobby_westhub", "source_node_id": "n_f1_lobby_cross", "target_node_id": "n_f1_west_hub", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_westhub_washroom", "source_node_id": "n_f1_west_hub", "target_node_id": "n_f1_washroom_door", "distance": 7.2, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_westhub_westmid", "source_node_id": "n_f1_west_hub", "target_node_id": "n_f1_west_corridor_mid", "distance": 10.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_westmid_robotics", "source_node_id": "n_f1_west_corridor_mid", "target_node_id": "n_f1_robotics_door", "distance": 4.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_atrium_westmid", "source_node_id": "n_f1_atrium_center", "target_node_id": "n_f1_west_corridor_mid", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_westmid_westnorth", "source_node_id": "n_f1_west_corridor_mid", "target_node_id": "n_f1_west_north_hub", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f1_westnorth_atriumnorth", "source_node_id": "n_f1_west_north_hub", "target_node_id": "n_f1_atrium_north", "distance": 8.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false},
+
+    {"id": "e_transit_elevator", "source_node_id": "n_f1_elevator", "target_node_id": "n_f2_elevator", "distance": 5.0, "direction": "both", "floor_id": 1, "is_accessible": true, "is_blocked": false, "traversal_cost_multiplier": 1.1},
+    {"id": "e_transit_stairs", "source_node_id": "n_f1_stairs", "target_node_id": "n_f2_stairs", "distance": 6.5, "direction": "both", "floor_id": 1, "is_accessible": false, "is_blocked": false, "traversal_cost_multiplier": 1.4},
+
+    {"id": "e_f2_elev_lobby", "source_node_id": "n_f2_elevator", "target_node_id": "n_f2_lobby_cross", "distance": 4.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_elev_atrium", "source_node_id": "n_f2_elevator", "target_node_id": "n_f2_atrium_center", "distance": 6.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_atrium_north", "source_node_id": "n_f2_atrium_center", "target_node_id": "n_f2_atrium_north", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_north_stairs", "source_node_id": "n_f2_atrium_north", "target_node_id": "n_f2_stairs", "distance": 4.0, "direction": "both", "floor_id": 2, "is_accessible": false, "is_blocked": false},
+
+    {"id": "e_f2_lobby_easthub", "source_node_id": "n_f2_lobby_cross", "target_node_id": "n_f2_east_hub", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_easthub_washroom", "source_node_id": "n_f2_east_hub", "target_node_id": "n_f2_washroom_door", "distance": 7.2, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_easthub_eastmid", "source_node_id": "n_f2_east_hub", "target_node_id": "n_f2_east_corridor_mid", "distance": 10.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_eastmid_complab", "source_node_id": "n_f2_east_corridor_mid", "target_node_id": "n_f2_complab_door", "distance": 4.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_atrium_eastmid", "source_node_id": "n_f2_atrium_center", "target_node_id": "n_f2_east_corridor_mid", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_eastmid_eastnorth", "source_node_id": "n_f2_east_corridor_mid", "target_node_id": "n_f2_east_north_hub", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_eastnorth_atriumnorth", "source_node_id": "n_f2_east_north_hub", "target_node_id": "n_f2_atrium_north", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+
+    {"id": "e_f2_lobby_westhub", "source_node_id": "n_f2_lobby_cross", "target_node_id": "n_f2_west_hub", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_westhub_classroom", "source_node_id": "n_f2_west_hub", "target_node_id": "n_f2_classroom_door", "distance": 7.2, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_westhub_westmid", "source_node_id": "n_f2_west_hub", "target_node_id": "n_f2_west_corridor_mid", "distance": 10.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_westmid_faculty", "source_node_id": "n_f2_west_corridor_mid", "target_node_id": "n_f2_faculty_door", "distance": 4.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_atrium_westmid", "source_node_id": "n_f2_atrium_center", "target_node_id": "n_f2_west_corridor_mid", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_westmid_westnorth", "source_node_id": "n_f2_west_corridor_mid", "target_node_id": "n_f2_west_north_hub", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false},
+    {"id": "e_f2_westnorth_atriumnorth", "source_node_id": "n_f2_west_north_hub", "target_node_id": "n_f2_atrium_north", "distance": 8.0, "direction": "both", "floor_id": 2, "is_accessible": true, "is_blocked": false}
+  ],
+  "obstacles": [
+    {
+      "id": "obs_f1_spill_east",
+      "name": "Level 1 East Corridor Tile Maintenance",
+      "floor_id": 1,
+      "edge_id": "e_f1_easthub_eastmid",
+      "coordinates": {"x": 8.0, "y": 0.0, "z": 5.0},
+      "dimensions": {"x": 2.5, "y": 1.2, "z": 3.0},
+      "type": "maintenance",
+      "severity": "blocked",
+      "description": "Floor resurfacing and barrier cones active. Direct passage between South-East Hub and East Corridor Midpoint is closed. Use Grand Atrium route.",
+      "active": false
+    },
+    {
+      "id": "obs_f2_lab_renovation",
+      "name": "Level 2 Atrium East Passageway Scaffold",
+      "floor_id": 2,
+      "edge_id": "e_f2_atrium_eastmid",
+      "coordinates": {"x": 4.0, "y": 4.0, "z": 0.0},
+      "dimensions": {"x": 3.0, "y": 2.8, "z": 1.8},
+      "type": "hazard",
+      "severity": "blocked",
+      "description": "Ceiling sensor installation scaffold. Forces path to Computer Lab 204 through the South Corridor or North Mezzanine bypass.",
+      "active": false
+    }
+  ]
+}
