@@ -13,7 +13,10 @@ import {
   RotateCw,
   Box,
   Cpu,
-  ArrowRight
+  ArrowRight,
+  Scan,
+  Compass,
+  Radio
 } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
 
@@ -28,7 +31,7 @@ export const ScanSpaceView: React.FC = () => {
 
   const [selectedMethod, setSelectedMethod] = useState<'video' | 'images' | 'camera' | 'sample'>('video');
   const [venueName, setVenueName] = useState('IIT Bombay - Computer Science Foyer');
-  const [fileCount, setFileCount] = useState(120);
+  const [fileCount, setFileCount] = useState(140);
   const [checklist, setChecklist] = useState({
     slowMovement: true,
     overlappingViews: true,
@@ -47,18 +50,18 @@ export const ScanSpaceView: React.FC = () => {
   const currentJob = activeJob || jobs[0];
 
   return (
-    <div className="p-6 space-y-8 max-w-6xl mx-auto">
+    <div className="p-6 space-y-8 max-w-6xl mx-auto overflow-y-auto">
       {/* Header */}
-      <div className="space-y-1">
+      <div className="space-y-1.5">
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-            Photogrammetry & NeRF / Gaussian Splatting
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+            STRUCTURE FROM MOTION (SfM) • 3D GAUSSIAN SPLATTING
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
-          Scan Space • <span className="text-gradient-cyan">Smartphone 3D Reconstruction</span>
+          Scan Space • <span className="text-gradient-cyan">Smartphone 3D Reconstruction Pipeline</span>
         </h1>
-        <p className="text-sm text-slate-400">
+        <p className="text-xs sm:text-sm text-slate-400 max-w-3xl">
           Capture indoor environments using everyday mobile video and convert them into
           centimeter-accurate 3D digital twins with automated camera pose estimation.
         </p>
@@ -68,27 +71,27 @@ export const ScanSpaceView: React.FC = () => {
         {/* Left Column: Step 1 & Step 2 */}
         <div className="lg:col-span-7 space-y-6">
           {/* STEP 1: CHOOSE CAPTURE METHOD */}
-          <div className="p-5 rounded-2xl bg-surface-card border border-surface-border space-y-4">
+          <div className="p-6 rounded-3xl bg-[#0B0F19]/90 backdrop-blur-xl border border-[#1F293D] space-y-4 shadow-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
+              <span className="text-xs font-mono font-extrabold text-cyan-400 uppercase tracking-wider">
                 Step 1: Choose Capture Method
               </span>
-              <span className="text-[11px] font-mono text-slate-500">4K / 1080p Recommended</span>
+              <span className="text-[10px] font-mono text-slate-500">4K 60FPS Recommended</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3.5">
               {/* Method 1: Upload Video */}
               <button
                 onClick={() => setSelectedMethod('video')}
-                className={`p-4 rounded-xl border text-left transition-all ${
+                className={`p-4 rounded-2xl border text-left transition-all ${
                   selectedMethod === 'video'
-                    ? 'bg-cyan-500/10 border-cyan-400 text-cyan-200 shadow-cyan-glow'
-                    : 'bg-surface-elevated border-surface-border text-slate-300 hover:border-slate-500'
+                    ? 'bg-cyan-500/15 border-cyan-400 text-cyan-200 shadow-cyan-glow'
+                    : 'bg-[#111827] border-[#1F293D] text-slate-300 hover:border-slate-500'
                 }`}
               >
                 <Video className="w-5 h-5 text-cyan-400 mb-2" />
-                <div className="text-sm font-bold">Upload Video</div>
-                <div className="text-xs text-slate-400 mt-1">
+                <div className="text-xs font-bold text-white">Upload Video</div>
+                <div className="text-[11px] text-slate-400 mt-1">
                   Single continuous walk-through video (.mp4, .mov)
                 </div>
               </button>
@@ -96,15 +99,15 @@ export const ScanSpaceView: React.FC = () => {
               {/* Method 2: Upload Photos */}
               <button
                 onClick={() => setSelectedMethod('images')}
-                className={`p-4 rounded-xl border text-left transition-all ${
+                className={`p-4 rounded-2xl border text-left transition-all ${
                   selectedMethod === 'images'
-                    ? 'bg-cyan-500/10 border-cyan-400 text-cyan-200 shadow-cyan-glow'
-                    : 'bg-surface-elevated border-surface-border text-slate-300 hover:border-slate-500'
+                    ? 'bg-cyan-500/15 border-cyan-400 text-cyan-200 shadow-cyan-glow'
+                    : 'bg-[#111827] border-[#1F293D] text-slate-300 hover:border-slate-500'
                 }`}
               >
                 <Upload className="w-5 h-5 text-cyan-400 mb-2" />
-                <div className="text-sm font-bold">Upload Photos</div>
-                <div className="text-xs text-slate-400 mt-1">
+                <div className="text-xs font-bold text-white">Upload Photos</div>
+                <div className="text-[11px] text-slate-400 mt-1">
                   60-300 overlapping photos taken at 60%+ overlap
                 </div>
               </button>
@@ -112,15 +115,15 @@ export const ScanSpaceView: React.FC = () => {
               {/* Method 3: Live Mobile Camera */}
               <button
                 onClick={() => setSelectedMethod('camera')}
-                className={`p-4 rounded-xl border text-left transition-all ${
+                className={`p-4 rounded-2xl border text-left transition-all ${
                   selectedMethod === 'camera'
-                    ? 'bg-cyan-500/10 border-cyan-400 text-cyan-200 shadow-cyan-glow'
-                    : 'bg-surface-elevated border-surface-border text-slate-300 hover:border-slate-500'
+                    ? 'bg-cyan-500/15 border-cyan-400 text-cyan-200 shadow-cyan-glow'
+                    : 'bg-[#111827] border-[#1F293D] text-slate-300 hover:border-slate-500'
                 }`}
               >
                 <Camera className="w-5 h-5 text-cyan-400 mb-2" />
-                <div className="text-sm font-bold">Phone Camera</div>
-                <div className="text-xs text-slate-400 mt-1">
+                <div className="text-xs font-bold text-white">Phone Camera</div>
+                <div className="text-[11px] text-slate-400 mt-1">
                   Direct browser camera capture with gyro feedback
                 </div>
               </button>
@@ -128,15 +131,15 @@ export const ScanSpaceView: React.FC = () => {
               {/* Method 4: Load Sample Environment */}
               <button
                 onClick={() => setSelectedMethod('sample')}
-                className={`p-4 rounded-xl border text-left transition-all ${
+                className={`p-4 rounded-2xl border text-left transition-all ${
                   selectedMethod === 'sample'
-                    ? 'bg-cyan-500/10 border-cyan-400 text-cyan-200 shadow-cyan-glow'
-                    : 'bg-surface-elevated border-surface-border text-slate-300 hover:border-slate-500'
+                    ? 'bg-cyan-500/15 border-cyan-400 text-cyan-200 shadow-cyan-glow'
+                    : 'bg-[#111827] border-[#1F293D] text-slate-300 hover:border-slate-500'
                 }`}
               >
                 <Box className="w-5 h-5 text-cyan-400 mb-2" />
-                <div className="text-sm font-bold">Preloaded Dataset</div>
-                <div className="text-xs text-slate-400 mt-1">
+                <div className="text-xs font-bold text-white">Preloaded Dataset</div>
+                <div className="text-[11px] text-slate-400 mt-1">
                   IIT Bombay Innovation Hub benchmark scan
                 </div>
               </button>
@@ -144,38 +147,38 @@ export const ScanSpaceView: React.FC = () => {
 
             {/* Input Venue Name */}
             <div className="space-y-1.5 pt-2">
-              <label className="text-xs font-mono text-slate-400">VENUE / BUILDING NAME</label>
+              <label className="text-xs font-mono text-slate-400 font-bold">VENUE / BUILDING NAME</label>
               <input
                 type="text"
                 value={venueName}
                 onChange={(e) => setVenueName(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-lg bg-surface-elevated border border-surface-border text-sm text-slate-200 focus:outline-none focus:border-cyan-400"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#111827] border border-[#1F293D] text-xs text-slate-200 focus:outline-none focus:border-cyan-400 font-sans"
               />
             </div>
           </div>
 
           {/* STEP 2: CAPTURE GUIDANCE CHECKLIST */}
-          <div className="p-5 rounded-2xl bg-surface-card border border-surface-border space-y-4">
+          <div className="p-6 rounded-3xl bg-[#0B0F19]/90 backdrop-blur-xl border border-[#1F293D] space-y-4 shadow-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-wider">
+              <span className="text-xs font-mono font-extrabold text-violet-400 uppercase tracking-wider">
                 Step 2: Interactive Capture Guidance
               </span>
-              <span className="text-[11px] font-mono text-slate-400">
+              <span className="text-[10px] font-mono text-slate-400">
                 Essential for SfM Convergence
               </span>
             </div>
 
             {/* Visual Trajectory Diagram */}
-            <div className="p-4 rounded-xl bg-surface-elevated border border-surface-border/60 flex items-center justify-between gap-4">
+            <div className="p-4 rounded-2xl bg-[#111827] border border-[#1F293D] flex items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="text-xs font-bold text-slate-200">Recommended Walk Pattern</div>
                 <div className="text-[11px] text-slate-400 leading-relaxed">
                   Walk in an inward-facing lawnmower serpentine loop, capturing high, eye-level, and low angles.
                 </div>
               </div>
-              <div className="w-28 h-16 rounded-lg border border-cyan-500/30 bg-slate-950/60 p-2 relative flex items-center justify-center">
-                <div className="w-full h-full border border-dashed border-cyan-400/50 rounded flex items-center justify-center">
-                  <span className="text-[9px] font-mono text-cyan-300">LOOP PATH</span>
+              <div className="w-32 h-18 rounded-xl border border-cyan-500/40 bg-[#070A0F] p-2 relative flex items-center justify-center shadow-inner">
+                <div className="w-full h-full border border-dashed border-cyan-400/60 rounded-lg flex items-center justify-center">
+                  <span className="text-[10px] font-mono text-cyan-300 font-bold">LOOP PATH</span>
                 </div>
               </div>
             </div>
@@ -192,7 +195,7 @@ export const ScanSpaceView: React.FC = () => {
               ].map((item) => (
                 <label
                   key={item.key}
-                  className="flex items-center gap-3 p-2.5 rounded-lg bg-surface-elevated hover:bg-slate-800/60 transition-colors cursor-pointer text-xs"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-[#111827] hover:bg-[#172033] transition-colors cursor-pointer text-xs"
                 >
                   <input
                     type="checkbox"
@@ -211,10 +214,10 @@ export const ScanSpaceView: React.FC = () => {
             <button
               onClick={handleStartScan}
               disabled={!allChecked}
-              className={`w-full py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all ${
+              className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all ${
                 allChecked
-                  ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-cyan-glow hover:brightness-110'
-                  : 'bg-surface-elevated text-slate-500 cursor-not-allowed border border-surface-border'
+                  ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-cyan-glow hover:brightness-110 cursor-pointer'
+                  : 'bg-[#111827] text-slate-500 cursor-not-allowed border border-[#1F293D]'
               }`}
             >
               <Sparkles className="w-4 h-4" />
@@ -225,12 +228,12 @@ export const ScanSpaceView: React.FC = () => {
 
         {/* Right Column: Step 3 - Reconstruction Pipeline Live Telemetry */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="p-5 rounded-2xl bg-surface-card border border-surface-border space-y-4">
+          <div className="p-6 rounded-3xl bg-[#0B0F19]/90 backdrop-blur-xl border border-[#1F293D] space-y-4 shadow-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
-                Step 3: 9-Stage Reconstruction Pipeline
+              <span className="text-xs font-mono font-extrabold text-emerald-400 uppercase tracking-wider">
+                Step 3: 9-Stage Pipeline Telemetry
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold uppercase">
+              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-extrabold border border-emerald-500/40 uppercase">
                 {currentJob.status}
               </span>
             </div>
@@ -241,7 +244,7 @@ export const ScanSpaceView: React.FC = () => {
                 <span className="text-slate-300 font-semibold">{currentJob.current_stage}</span>
                 <span className="text-cyan-400 font-bold">{currentJob.progress_percentage}%</span>
               </div>
-              <div className="h-2.5 w-full bg-surface-elevated rounded-full overflow-hidden border border-surface-border">
+              <div className="h-3 w-full bg-[#111827] rounded-full overflow-hidden border border-[#1F293D]">
                 <div
                   className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 transition-all duration-500 rounded-full"
                   style={{ width: `${currentJob.progress_percentage}%` }}
@@ -264,12 +267,12 @@ export const ScanSpaceView: React.FC = () => {
               ].map((s, idx) => (
                 <div
                   key={s.stage}
-                  className={`flex items-center justify-between p-1.5 rounded ${
+                  className={`flex items-center justify-between p-2 rounded-xl ${
                     s.done ? 'bg-cyan-500/10 text-cyan-300' : 'text-slate-500'
                   }`}
                 >
                   <span className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold text-slate-600">0{idx + 1}.</span>
+                    <span className="text-[10px] font-bold text-slate-500">0{idx + 1}.</span>
                     <span>{s.stage}</span>
                   </span>
                   {s.done ? (
@@ -282,26 +285,26 @@ export const ScanSpaceView: React.FC = () => {
             </div>
 
             {/* Telemetry Metrics */}
-            <div className="grid grid-cols-2 gap-2 text-xs font-mono p-3 bg-surface-elevated rounded-xl border border-surface-border">
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono p-3.5 bg-[#111827] rounded-2xl border border-[#1F293D]">
               <div>
-                <span className="text-slate-500 block">KEYFRAMES</span>
-                <span className="text-slate-200 font-bold">{currentJob.file_count}</span>
+                <span className="text-slate-500 text-[10px] block font-bold">KEYFRAMES</span>
+                <span className="text-slate-200 font-extrabold text-sm">{currentJob.file_count}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">POINT CLOUD</span>
-                <span className="text-slate-200 font-bold">
+                <span className="text-slate-500 text-[10px] block font-bold">POINT CLOUD</span>
+                <span className="text-slate-200 font-extrabold text-sm">
                   {currentJob.point_cloud_count ? currentJob.point_cloud_count.toLocaleString() : 'Processing...'}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">MESH VERTICES</span>
-                <span className="text-slate-200 font-bold">
+                <span className="text-slate-500 text-[10px] block font-bold">MESH VERTICES</span>
+                <span className="text-slate-200 font-extrabold text-sm">
                   {currentJob.mesh_vertex_count ? currentJob.mesh_vertex_count.toLocaleString() : 'Processing...'}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">ELAPSED TIME</span>
-                <span className="text-cyan-400 font-bold">{Math.round(currentJob.elapsed_seconds)}s</span>
+                <span className="text-slate-500 text-[10px] block font-bold">ELAPSED TIME</span>
+                <span className="text-cyan-400 font-extrabold text-sm">{Math.round(currentJob.elapsed_seconds)}s</span>
               </div>
             </div>
 
@@ -309,9 +312,9 @@ export const ScanSpaceView: React.FC = () => {
             <div className="space-y-1">
               <div className="text-[10px] font-mono text-slate-500 flex items-center justify-between">
                 <span>RECONSTRUCTION TELEMETRY LOG</span>
-                <span className="text-emerald-400">STREAMING ACTIVE</span>
+                <span className="text-emerald-400 font-bold">STREAMING ACTIVE</span>
               </div>
-              <div className="h-40 p-3 rounded-lg bg-slate-950 font-mono text-[11px] text-slate-300 overflow-y-auto space-y-1 border border-surface-border">
+              <div className="h-44 p-3.5 rounded-2xl bg-[#070A0F] font-mono text-[11px] text-slate-300 overflow-y-auto space-y-1 border border-[#1F293D]">
                 {currentJob.logs.map((log, i) => (
                   <div key={i} className="leading-snug">
                     <span className="text-cyan-400">{log.substring(0, 7)}</span>
@@ -328,7 +331,7 @@ export const ScanSpaceView: React.FC = () => {
                   setSelectedFloorId(1);
                   setActiveSection('twin');
                 }}
-                className="w-full py-2.5 px-4 rounded-xl font-bold text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 transition-all flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-xl font-bold text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 hover:bg-emerald-500/30 transition-all flex items-center justify-center gap-2 shadow-emerald-glow"
               >
                 <Box className="w-4 h-4 text-emerald-400" />
                 <span>Open Digital Twin in 3D Viewport</span>

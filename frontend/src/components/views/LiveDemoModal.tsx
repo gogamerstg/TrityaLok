@@ -8,7 +8,9 @@ import {
   Route,
   Accessibility,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Zap,
+  Radio
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useAppStore } from '../../store/useAppStore';
@@ -20,7 +22,6 @@ export const LiveDemoModal: React.FC = () => {
     building,
     setStartNodeId,
     setDestinationPoiId,
-    setDestinationNodeId,
     setAccessibleOnly,
     setAvoidStairs,
     calculateCurrentRoute,
@@ -37,7 +38,6 @@ export const LiveDemoModal: React.FC = () => {
 
   // Scenario 1: Find Computer Lab 204
   const runScenario1 = () => {
-    // 1. Ensure obstacle is inactive for clear primary route
     const obs = building.obstacles.find((o) => o.id === 'obs_f2_lab_renovation');
     if (obs && obs.active) toggleObstacle('obs_f2_lab_renovation');
 
@@ -65,7 +65,6 @@ export const LiveDemoModal: React.FC = () => {
 
   // Scenario 2: Blocked Corridor Dynamic Reroute
   const runScenario2 = () => {
-    // 1. Activate maintenance obstacle on East Corridor
     const obs = building.obstacles.find((o) => o.id === 'obs_f1_spill_east');
     if (obs && !obs.active) {
       toggleObstacle('obs_f1_spill_east');
@@ -94,7 +93,7 @@ export const LiveDemoModal: React.FC = () => {
     });
   };
 
-  // Scenario 3: Accessible Multi-Floor Route (Wheelchair Step-Free via Elevator)
+  // Scenario 3: Accessible Multi-Floor Route via Elevator
   const runScenario3 = () => {
     setStartNodeId('n_f1_entrance');
     setDestinationPoiId('poi_classroom_201');
@@ -120,42 +119,42 @@ export const LiveDemoModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-surface-card border border-amber-500/40 rounded-3xl shadow-2xl overflow-hidden p-6 space-y-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#070A0F]/85 backdrop-blur-2xl animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl bg-[#0B0F19] border border-amber-500/40 rounded-3xl shadow-2xl overflow-hidden p-6 sm:p-7 space-y-6">
         {/* Close Button */}
         <button
           onClick={() => setIsLiveDemoModalOpen(false)}
-          className="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-lg hover:bg-surface-elevated transition-colors"
+          className="absolute top-5 right-5 p-2 text-slate-400 hover:text-white rounded-xl hover:bg-[#172033] transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 fill-amber-400" />
-              1-Click Judge Scenarios • Techfest IIT Bombay
+              1-CLICK JUDGE SCENARIOS • TECHFEST IIT BOMBAY
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold text-white">
-            Live Demonstration Scenarios
+            Live Demonstration Presets
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-400 leading-relaxed">
             Select any scenario below to immediately execute an automated end-to-end demonstration.
           </p>
         </div>
 
         {/* Scenario Cards */}
-        <div className="space-y-3">
+        <div className="space-y-3.5">
           {/* SCENARIO 1 */}
           <div
             onClick={runScenario1}
-            className="p-4 rounded-2xl bg-surface-elevated border border-surface-border hover:border-cyan-400/60 transition-all cursor-pointer group flex items-center justify-between gap-4 shadow-sm"
+            className="p-4 sm:p-5 rounded-2xl bg-[#111827] border border-[#1F293D] hover:border-cyan-400 transition-all cursor-pointer group flex items-center justify-between gap-4 shadow-lg"
           >
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-extrabold border border-cyan-500/40">
                   SCENARIO 01
                 </span>
                 <span className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
@@ -166,7 +165,7 @@ export const LiveDemoModal: React.FC = () => {
                 Automated search for GPU & 3D Vision Lab, computes A* trajectory from Main Entrance, highlights destination beacon, and begins animated drone navigation.
               </p>
             </div>
-            <button className="p-3 rounded-xl bg-cyan-500 text-slate-950 group-hover:bg-cyan-400 transition-colors shadow-cyan-glow flex-shrink-0">
+            <button className="p-3.5 rounded-2xl bg-cyan-500 text-slate-950 group-hover:bg-cyan-400 transition-colors shadow-cyan-glow flex-shrink-0">
               <Play className="w-5 h-5 fill-current" />
             </button>
           </div>
@@ -174,11 +173,11 @@ export const LiveDemoModal: React.FC = () => {
           {/* SCENARIO 2 */}
           <div
             onClick={runScenario2}
-            className="p-4 rounded-2xl bg-surface-elevated border border-surface-border hover:border-amber-400/60 transition-all cursor-pointer group flex items-center justify-between gap-4 shadow-sm"
+            className="p-4 sm:p-5 rounded-2xl bg-[#111827] border border-[#1F293D] hover:border-amber-400 transition-all cursor-pointer group flex items-center justify-between gap-4 shadow-lg"
           >
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-extrabold border border-amber-500/40">
                   SCENARIO 02
                 </span>
                 <span className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">
@@ -189,7 +188,7 @@ export const LiveDemoModal: React.FC = () => {
                 Simulates an active floor maintenance spill in the East Corridor. The engine detects the blockage and dynamically reroutes travelers through the Grand Atrium bypass.
               </p>
             </div>
-            <button className="p-3 rounded-xl bg-amber-500 text-slate-950 group-hover:bg-amber-400 transition-colors shadow-amber-glow flex-shrink-0">
+            <button className="p-3.5 rounded-2xl bg-amber-500 text-slate-950 group-hover:bg-amber-400 transition-colors shadow-amber-glow flex-shrink-0">
               <Play className="w-5 h-5 fill-current" />
             </button>
           </div>
@@ -197,11 +196,11 @@ export const LiveDemoModal: React.FC = () => {
           {/* SCENARIO 3 */}
           <div
             onClick={runScenario3}
-            className="p-4 rounded-2xl bg-surface-elevated border border-surface-border hover:border-emerald-400/60 transition-all cursor-pointer group flex items-center justify-between gap-4 shadow-sm"
+            className="p-4 sm:p-5 rounded-2xl bg-[#111827] border border-[#1F293D] hover:border-emerald-400 transition-all cursor-pointer group flex items-center justify-between gap-4 shadow-lg"
           >
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-extrabold border border-emerald-500/40">
                   SCENARIO 03
                 </span>
                 <span className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
@@ -212,16 +211,16 @@ export const LiveDemoModal: React.FC = () => {
                 Enforces strict wheelchair accessibility constraints. Bypasses the architectural staircase and navigates seamlessly via the Central Glass Elevator to Level 2.
               </p>
             </div>
-            <button className="p-3 rounded-xl bg-emerald-500 text-slate-950 group-hover:bg-emerald-400 transition-colors shadow-emerald-glow flex-shrink-0">
+            <button className="p-3.5 rounded-2xl bg-emerald-500 text-slate-950 group-hover:bg-emerald-400 transition-colors shadow-emerald-glow flex-shrink-0">
               <Play className="w-5 h-5 fill-current" />
             </button>
           </div>
         </div>
 
         {/* Competition Footer Pill */}
-        <div className="p-3 rounded-xl bg-slate-900 border border-surface-border flex items-center justify-between text-xs text-slate-400 font-mono">
+        <div className="p-3.5 rounded-2xl bg-[#070A0F] border border-[#1F293D] flex items-center justify-between text-xs text-slate-400 font-mono">
           <span>TARGET: Techfest Namma Space Round 1/2/3</span>
-          <span className="text-cyan-400">100% CLIENT-READY (NO EXTERNAL DEPS REQUIRED)</span>
+          <span className="text-cyan-400 font-bold">100% IN-BROWSER READY</span>
         </div>
       </div>
     </div>
