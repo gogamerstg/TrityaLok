@@ -24,7 +24,7 @@ def set_cell_background(cell, fill_hex):
     shd.set(qn('w:fill'), fill_hex)
     tcPr.append(shd)
 
-def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
+def set_cell_TrityaLokins(cell, top=100, bottom=100, left=150, right=150):
     """Sets padding for a table cell."""
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = OxmlElement('w:tcMar')
@@ -38,10 +38,10 @@ def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
 def add_header_footer(doc, title_text):
     """Adds running headers and footers."""
     for section in doc.sections:
-        section.top_margin = Inches(0.8)
-        section.bottom_margin = Inches(0.8)
-        section.left_margin = Inches(0.8)
-        section.right_margin = Inches(0.8)
+        section.top_TrityaLokin = Inches(0.8)
+        section.bottom_TrityaLokin = Inches(0.8)
+        section.left_TrityaLokin = Inches(0.8)
+        section.right_TrityaLokin = Inches(0.8)
         
         # Header
         header = section.header
@@ -97,7 +97,7 @@ def build_technical_abstract():
     tbl_meta.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell_meta = tbl_meta.cell(0, 0)
     set_cell_background(cell_meta, "F0F9FF")
-    set_cell_margins(cell_meta, 120, 120, 180, 180)
+    set_cell_TrityaLokins(cell_meta, 120, 120, 180, 180)
     p_meta = cell_meta.paragraphs[0]
     style_paragraph(p_meta, 0, 0)
     r1 = p_meta.add_run("Team Entry: ")
@@ -108,7 +108,7 @@ def build_technical_abstract():
     p_meta.add_run("Round 1: 3D Reconstruction & Roaming (Online)  |  ")
     r3 = p_meta.add_run("Live Web Viewer: ")
     r3.bold = True
-    p_meta.add_run("https://margdarshaka.netlify.app/\n")
+    p_meta.add_run("https://TrityaLoka.netlify.app/\n")
     r4 = p_meta.add_run("Evaluation Dataset: ")
     r4.bold = True
     p_meta.add_run("Resident Home Space (2-BHK Apartment, 120 Keyframe Poses, Laser-Calibrated MAE 0.62 cm)")
@@ -168,7 +168,7 @@ def build_technical_abstract():
     for i, h in enumerate(headers):
         c = tbl_sop.cell(0, i)
         set_cell_background(c, "1E293B")
-        set_cell_margins(c, 80, 80, 100, 100)
+        set_cell_TrityaLokins(c, 80, 80, 100, 100)
         p = c.paragraphs[0]
         style_paragraph(p, 0, 0)
         r = p.add_run(h)
@@ -188,7 +188,7 @@ def build_technical_abstract():
         for col_idx, val in enumerate(row_vals):
             c = tbl_sop.cell(row_idx, col_idx)
             set_cell_background(c, bg)
-            set_cell_margins(c, 60, 60, 80, 80)
+            set_cell_TrityaLokins(c, 60, 60, 80, 80)
             p = c.paragraphs[0]
             style_paragraph(p, 0, 0)
             r = p.add_run(val)
@@ -239,7 +239,7 @@ def build_technical_abstract():
     for i, h in enumerate(m_headers):
         c = tbl_metric.cell(0, i)
         set_cell_background(c, "0F172A")
-        set_cell_margins(c, 80, 80, 100, 100)
+        set_cell_TrityaLokins(c, 80, 80, 100, 100)
         p = c.paragraphs[0]
         style_paragraph(p, 0, 0)
         r = p.add_run(h)
@@ -260,7 +260,7 @@ def build_technical_abstract():
         for col_idx, val in enumerate(row_vals):
             c = tbl_metric.cell(row_idx, col_idx)
             set_cell_background(c, bg)
-            set_cell_margins(c, 60, 60, 80, 80)
+            set_cell_TrityaLokins(c, 60, 60, 80, 80)
             p = c.paragraphs[0]
             style_paragraph(p, 0, 0)
             r = p.add_run(val)
@@ -281,7 +281,7 @@ def build_technical_abstract():
     )
 
     viewer_features = [
-        ("Zero-Plugin Universal Access: ", "Accessible on any modern web browser via Netlify CDN (https://margdarshaka.netlify.app/) without requiring app store downloads or GPU drivers."),
+        ("Zero-Plugin Universal Access: ", "Accessible on any modern web browser via Netlify CDN (https://TrityaLoka.netlify.app/) without requiring app store downloads or GPU drivers."),
         ("Multi-Modal Camera Directors: ", "Supports 3D Orbit (rotational inspection), 2D Top-Down Architectural Projection (planimetric spatial overview), and First-Person FPS Roam."),
         ("Cross-Device Free-Roaming: ", "On desktops, users navigate using WASD keys, Shift to accelerate, and Pointer Lock mouse look. On mobile and tablet touchscreens, an auto-layout Virtual Touch D-Pad allows intuitive one-handed walkthroughs."),
         ("Real-Time Lighting Shaders: ", "Features 3 switchable environment illumination models: Cyber Neon (high-contrast spatial geometry), Daylight Architecture (sunlight PBR shadows), and CAD Blueprint (orthogonal wireframe grid)."),
@@ -366,7 +366,7 @@ def build_proof_of_concept_doc():
     tbl_banner.alignment = WD_TABLE_ALIGNMENT.CENTER
     c_b = tbl_banner.cell(0, 0)
     set_cell_background(c_b, "E0F2FE")
-    set_cell_margins(c_b, 140, 140, 200, 200)
+    set_cell_TrityaLokins(c_b, 140, 140, 200, 200)
     p_b = c_b.paragraphs[0]
     style_paragraph(p_b, 0, 0)
     p_b.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -375,7 +375,7 @@ def build_proof_of_concept_doc():
     r_lb.font.size = Pt(11)
     r_lb.font.color.rgb = RGBColor(15, 23, 42)
     
-    r_url = p_b.add_run("https://margdarshaka.netlify.app/\n")
+    r_url = p_b.add_run("https://TrityaLoka.netlify.app/\n")
     r_url.bold = True
     r_url.font.size = Pt(16)
     r_url.font.color.rgb = RGBColor(0, 102, 204)
@@ -403,7 +403,7 @@ def build_proof_of_concept_doc():
     p2.add_run("Judges can evaluate the entire submission scope directly through the web application in four simple steps:")
 
     steps = [
-        ("Step 1 — Open the Universal Web Viewer Link: ", "Navigate to https://margdarshaka.netlify.app/ in any web browser. The Command Center loads immediately with real-time telemetry (0.62 cm MAE, 78.4% frame overlap, 60 FPS WebGL)."),
+        ("Step 1 — Open the Universal Web Viewer Link: ", "Navigate to https://TrityaLoka.netlify.app/ in any web browser. The Command Center loads immediately with real-time telemetry (0.62 cm MAE, 78.4% frame overlap, 60 FPS WebGL)."),
         ("Step 2 — Launch Free-Roaming Walkthrough: ", "Click 'Launch 3D Free-Roaming Walkthrough' or select 'Digital Twin 3D' from the sidebar. Use Orbit controls to rotate the resident apartment, or click 'Free-Roam' to enter first-person WASD mode."),
         ("Step 3 — Test Smartphone 3D Scan Pipeline: ", "Navigate to the 'Scan Space (SfM)' tab. Click '[ 🎬 Load Valid 4K Sample Video ]' and press 'Start 9-Stage Reconstruction'. Watch the 9-stage telemetry progress from Image Ingestion to Draco WebGL compression, which automatically launches the 3D twin upon completion."),
         ("Step 4 — Review In-App Technical Abstract & SOP Dataset: ", "Click 'Technical Abstract' to read the 5-page IEEE abstract or press 'Print to PDF'. Click 'Test Dataset (SOP)' to inspect camera intrinsics, 120 keyframe poses, and laser ground-truth error metrics.")
@@ -424,7 +424,7 @@ def build_proof_of_concept_doc():
     for i, h in enumerate(c_heads):
         c = tbl_ctrl.cell(0, i)
         set_cell_background(c, "0F172A")
-        set_cell_margins(c, 80, 80, 100, 100)
+        set_cell_TrityaLokins(c, 80, 80, 100, 100)
         p = c.paragraphs[0]
         style_paragraph(p, 0, 0)
         r = p.add_run(h)
@@ -443,7 +443,7 @@ def build_proof_of_concept_doc():
         for col_idx, val in enumerate(row_vals):
             c = tbl_ctrl.cell(row_idx, col_idx)
             set_cell_background(c, bg)
-            set_cell_margins(c, 60, 60, 80, 80)
+            set_cell_TrityaLokins(c, 60, 60, 80, 80)
             p = c.paragraphs[0]
             style_paragraph(p, 0, 0)
             r = p.add_run(val)
@@ -473,10 +473,10 @@ def build_proof_of_concept_doc():
     p5.add_run("In accordance with Round 1 submission requirements, the following companion assets are provided:")
 
     links = [
-        ("Official Web Viewer (Proof of Concept): ", "https://margdarshaka.netlify.app/"),
-        ("Technical Abstract (5-Page PDF): ", "https://margdarshaka.netlify.app/TECHFEST_ABSTRACT.html (or see enclosed PDF in Google Drive)"),
-        ("Demonstration Walkthrough Video: ", "Included inside Google Drive folder: `MARG_DARSHAK_Walkthrough_Video.mp4` (also playable in-app under Scan Space)"),
-        ("Code Repository & Test Harness: ", "Included inside Google Drive folder: `marg_darshak_round1_repo.zip` (containing `test/` directory and `reconstruction_test_runner.py`)")
+        ("Official Web Viewer (Proof of Concept): ", "https://TrityaLoka.netlify.app/"),
+        ("Technical Abstract (5-Page PDF): ", "https://TrityaLoka.netlify.app/TECHFEST_ABSTRACT.html (or see enclosed PDF in Google Drive)"),
+        ("Demonstration Walkthrough Video: ", "Included inside Google Drive folder: `TrityaLok__Walkthrough_Video.mp4` (also playable in-app under Scan Space)"),
+        ("Code Repository & Test Harness: ", "Included inside Google Drive folder: `TrityaLok__round1_repo.zip` (containing `test/` directory and `reconstruction_test_runner.py`)")
     ]
     for l_t, l_u in links:
         p_l = doc.add_paragraph(style='List Bullet')

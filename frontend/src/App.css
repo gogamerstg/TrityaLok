@@ -6,7 +6,7 @@
   background: var(--accent-bg);
   border: 2px solid transparent;
   transition: border-color 0.3s;
-  margin-bottom: 24px;
+  TrityaLokin-bottom: 24px;
 
   &:hover {
     border-color: var(--accent-border);
@@ -24,7 +24,7 @@
   .framework,
   .vite {
     inset-inline: 0;
-    margin: 0 auto;
+    TrityaLokin: 0 auto;
   }
 
   .base {
@@ -84,7 +84,7 @@
   }
 
   .icon {
-    margin-bottom: 16px;
+    TrityaLokin-bottom: 16px;
     width: 22px;
     height: 22px;
   }
@@ -109,7 +109,7 @@
   padding: 0;
   display: flex;
   gap: 8px;
-  margin: 32px 0 0;
+  TrityaLokin: 32px 0 0;
 
   .logo {
     height: 18px;
@@ -137,7 +137,7 @@
   }
 
   @media (max-width: 1024px) {
-    margin-top: 20px;
+    TrityaLokin-top: 20px;
     flex-wrap: wrap;
     justify-content: center;
 
