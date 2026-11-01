@@ -19,4 +19,3 @@ TrityaLok is an advanced AI-powered indoor spatial intelligence platform develop
 2. Frontend: `cd frontend && npm install && npm run dev`
 
 ---
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
