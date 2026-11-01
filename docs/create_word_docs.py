@@ -479,7 +479,7 @@ def build_proof_of_concept_doc():
         ("Official Web Viewer (Proof of Concept): ", "https://trityaloka.onrender.com/"),
         ("Technical Abstract (5-Page PDF): ", "https://trityaloka.onrender.com/TECHFEST_ABSTRACT.html (or see enclosed PDF in Google Drive)"),
         ("Demonstration Walkthrough Video: ", "Included inside Google Drive folder: `TrityaLok__Walkthrough_Video.mp4` (also playable in-app under Scan Space)"),
-        ("Code Repository & Test Harness: ", "Included inside Google Drive folder: https://github.com/gogamerstg/TrityaLok (also archived as `4_TrityaLok_Code_Repository.zip` with test/ suite)")
+        ("Code Repository & Test Harness: ", "Included inside Google Drive folder: https://github.com/sourabhbansal2987-source/Tritya-Loka (also archived as `4_TrityaLok_Code_Repository.zip` with test/ suite)")
     ]
     for l_t, l_u in links:
         p_l = doc.add_paragraph(style='List Bullet')

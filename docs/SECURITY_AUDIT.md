@@ -3,7 +3,7 @@
 **Project:** TRITYALOK (3D Indoor Digital Twin & Free-Roaming Engine)  
 **Competition:** Techfest, IIT Bombay — *Namma Space 2026* (Round 1)  
 **Production URL:** https://trityaloka.onrender.com/  
-**Repository:** https://github.com/gogamerstg/TrityaLok  
+**Repository:** https://github.com/sourabhbansal2987-source/Tritya-Loka  
 **Auditor Engine:** STRIX Agent 1.7.0 & Senior Web Developer Static/Dynamic Security Audit  
 **Date:** November 1, 2026  
 **Status:** **PASSED — ALL SEVERITY RISKS RESOLVED (0 Critical, 0 High, 0 Medium, 0 Low)**  
