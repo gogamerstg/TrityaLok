@@ -1,83 +1,118 @@
-import React, { useRef, useEffect } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import React, { useRef, useEffect, useState, Suspense } from 'react';
+import { Canvas, useThree, useFrame } from '@react-three/fiber';
+import { OrbitControls, useGLTF, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import {
   Maximize2,
-  Compass,
-  Layers,
-  User,
   RotateCcw,
-  Navigation,
-  AlertTriangle,
-  Grid,
+  Upload,
   Eye,
-  Scan,
-  Radio
+  Footprints,
+  Loader2
 } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
-import { BuildingMesh } from './BuildingMesh';
-import { PoiMarkers } from './PoiMarkers';
-import { NavigationPath3D } from './NavigationPath3D';
-import { SpatialOverlays3D } from './SpatialOverlays3D';
-import { FirstPersonControls } from './FirstPersonControls';
-import { AnimatedAvatar } from './AnimatedAvatar';
 
-const CameraDirector: React.FC = () => {
-  const { viewMode, selectedPoi, controlsMode } = useAppStore();
-  const { camera } = useThree();
+/* ── Prebuilt GLB Model Loader ── */
+const PrebuiltModel: React.FC<{ url: string }> = ({ url }) => {
+  const { scene } = useGLTF(url);
+  const ref = useRef<THREE.Group>(null);
 
   useEffect(() => {
-    if (controlsMode === 'firstPerson') return;
+    if (!ref.current) return;
+    // Auto-center and auto-scale the model
+    const box = new THREE.Box3().setFromObject(scene);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const scale = 20 / maxDim; // normalize to ~20 units
+    scene.scale.setScalar(scale);
+    scene.position.set(-center.x * scale, -box.min.y * scale, -center.z * scale);
+  }, [scene]);
 
-    if (viewMode === 'floorplan') {
-      // Top down
-      camera.position.set(0, 52, 0.01);
-      camera.lookAt(0, 0, 0);
-    } else if (viewMode === 'inspection' && selectedPoi) {
-      // Focus on POI
-      const p = selectedPoi.coordinates;
-      camera.position.set(p.x + 9, p.y + 8, p.z + 11);
-      camera.lookAt(p.x, p.y + 1, p.z);
-    } else if (viewMode === 'explore') {
-      // Default isometric
-      camera.position.set(34, 30, 40);
-      camera.lookAt(0, 2, 0);
-    }
-  }, [viewMode, selectedPoi, controlsMode, camera]);
+  return <primitive ref={ref} object={scene} />;
+};
+
+/* ── Loading Fallback ── */
+const LoadingFallback = () => (
+  <Html center>
+    <div className="flex flex-col items-center gap-3 text-cyan-400">
+      <Loader2 className="w-10 h-10 animate-spin" />
+      <span className="text-xs font-mono font-bold">Loading 3D Scan...</span>
+    </div>
+  </Html>
+);
+
+/* ── WASD First Person Walk Controller ── */
+const WalkControls: React.FC<{ enabled: boolean }> = ({ enabled }) => {
+  const { camera } = useThree();
+  const keys = useRef<Record<string, boolean>>({});
+  const speed = 0.25;
+
+  useEffect(() => {
+    const onDown = (e: KeyboardEvent) => { keys.current[e.code] = true; };
+    const onUp = (e: KeyboardEvent) => { keys.current[e.code] = false; };
+    window.addEventListener('keydown', onDown);
+    window.addEventListener('keyup', onUp);
+    return () => {
+      window.removeEventListener('keydown', onDown);
+      window.removeEventListener('keyup', onUp);
+    };
+  }, []);
+
+  useFrame(() => {
+    if (!enabled) return;
+    const direction = new THREE.Vector3();
+    camera.getWorldDirection(direction);
+    direction.y = 0;
+    direction.normalize();
+    const right = new THREE.Vector3().crossVectors(direction, camera.up).normalize();
+
+    if (keys.current['KeyW'] || keys.current['ArrowUp']) camera.position.addScaledVector(direction, speed);
+    if (keys.current['KeyS'] || keys.current['ArrowDown']) camera.position.addScaledVector(direction, -speed);
+    if (keys.current['KeyA'] || keys.current['ArrowLeft']) camera.position.addScaledVector(right, -speed);
+    if (keys.current['KeyD'] || keys.current['ArrowRight']) camera.position.addScaledVector(right, speed);
+  });
 
   return null;
 };
 
+/* ── Camera Auto-Fit ── */
+const CameraSetup: React.FC = () => {
+  const { camera } = useThree();
+  useEffect(() => {
+    camera.position.set(15, 12, 20);
+    camera.lookAt(0, 2, 0);
+  }, [camera]);
+  return null;
+};
+
+/* ══════════════════════════════════════════════════════
+   MAIN SPACE VIEWER
+══════════════════════════════════════════════════════ */
 export const SpaceViewer: React.FC<{ height?: string }> = ({ height = '100%' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<any>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const {
-    controlsMode,
-    setControlsMode,
-    viewMode,
-    setViewMode,
-    selectedFloorId,
-    setSelectedFloorId,
-    showPoiLabels,
-    setShowPoiLabels,
-    showNavigationPath,
-    setShowNavigationPath,
-    showObstacles,
-    setShowObstacles,
-    showWalkableMesh,
-    setShowWalkableMesh,
-    activeRoute,
-  } = useAppStore();
+  const { building } = useAppStore();
+
+  // Default: load the prebuilt scan from public/models/
+  const [modelUrl, setModelUrl] = useState<string>('/models/trityalok_scan.glb');
+  const [walkMode, setWalkMode] = useState(false);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setModelUrl(url);
+  };
 
   const resetCamera = () => {
     if (orbitRef.current) {
       orbitRef.current.reset();
       orbitRef.current.target.set(0, 2, 0);
     }
-    setViewMode('explore');
-    setControlsMode('orbit');
+    setWalkMode(false);
   };
 
   const toggleFullscreen = () => {
@@ -95,241 +130,119 @@ export const SpaceViewer: React.FC<{ height?: string }> = ({ height = '100%' }) 
       className="relative w-full overflow-hidden bg-[#070A0F] border border-[#1F293D] rounded-3xl shadow-2xl"
       style={{ height }}
     >
-      {/* 3D Canvas Viewport */}
+      {/* Hidden file input for swapping GLB */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileUpload}
+        accept=".glb,.gltf"
+        className="hidden"
+      />
+
       <Canvas
         shadows
-        camera={{ position: [34, 30, 40], fov: 48 }}
+        camera={{ position: [15, 12, 20], fov: 50 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
         className="w-full h-full"
       >
         <color attach="background" args={['#070A0F']} />
-        <fog attach="fog" args={['#070A0F', 45, 115]} />
+        <fog attach="fog" args={['#070A0F', 50, 120]} />
 
-        {/* Lighting Atmosphere */}
-        <ambientLight intensity={0.7} color="#D1D5DB" />
-        <directionalLight
-          position={[32, 48, 28]}
-          intensity={1.3}
-          color="#F8FAFC"
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-camera-near={0.5}
-          shadow-camera-far={120}
-          shadow-camera-left={-42}
-          shadow-camera-right={42}
-          shadow-camera-top={42}
-          shadow-camera-bottom={-42}
-        />
-        <pointLight position={[-16, 14, 12]} intensity={1.8} color="#00F2FE" distance={40} />
-        <pointLight position={[16, 14, -12]} intensity={1.8} color="#9055FF" distance={40} />
+        {/* Lighting */}
+        <ambientLight intensity={0.8} color="#D1D5DB" />
+        <directionalLight position={[30, 45, 25]} intensity={1.5} color="#F8FAFC" castShadow />
+        <pointLight position={[-15, 12, 10]} intensity={1.5} color="#00F2FE" distance={45} />
+        <pointLight position={[15, 12, -10]} intensity={1.5} color="#9055FF" distance={45} />
 
-        {/* Camera Director */}
-        <CameraDirector />
+        <CameraSetup />
 
-        {/* Orbit Controls (when not first person) */}
-        {controlsMode === 'orbit' && (
+        {/* Orbit controls when not walking */}
+        {!walkMode && (
           <OrbitControls
             ref={orbitRef}
             enableDamping
             dampingFactor={0.06}
-            maxPolarAngle={viewMode === 'floorplan' ? 0.05 : Math.PI / 2.05}
-            minDistance={4}
-            maxDistance={95}
+            minDistance={2}
+            maxDistance={100}
             target={[0, 2, 0]}
           />
         )}
 
-        {/* First Person Controls */}
-        <FirstPersonControls />
+        {/* WASD walk mode */}
+        <WalkControls enabled={walkMode} />
 
-        {/* Building 3D Mesh */}
-        <BuildingMesh />
+        {/* Ground plane */}
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]} receiveShadow>
+          <planeGeometry args={[200, 200]} />
+          <meshStandardMaterial color="#0A0F1D" roughness={0.8} />
+        </mesh>
+        <gridHelper args={[100, 50, '#00C8FF', '#1E293B']} position={[0, 0.01, 0]} />
 
-        {/* POI Hologram Markers */}
-        <PoiMarkers />
-
-        {/* Glowing Navigation Spline */}
-        <NavigationPath3D />
-
-        {/* Autonomous Navigating Avatar Drone */}
-        <AnimatedAvatar />
-
-        {/* Spatial Intelligence Overlays (Heatmaps, Mesh, Points) */}
-        <SpatialOverlays3D />
+        {/* The actual 3D scan model */}
+        <Suspense fallback={<LoadingFallback />}>
+          <PrebuiltModel url={modelUrl} />
+        </Suspense>
       </Canvas>
 
-      {/* TOP FLOATING HUD BAR */}
-      <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3 pointer-events-none select-none z-10">
-        {/* Left: Building & Level Indicator */}
-        <div className="pointer-events-auto flex items-center gap-2.5 bg-[#0B0F19]/90 backdrop-blur-2xl px-3.5 py-2 rounded-2xl border border-[#1F293D] shadow-2xl">
-          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-cyan-glow" />
+      {/* ── TOP LEFT HUD ── */}
+      <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
+        <div className="flex items-center gap-2 bg-[#0B0F19]/90 backdrop-blur-2xl px-3.5 py-2 rounded-2xl border border-[#1F293D] shadow-2xl">
+          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
           <span className="text-xs font-mono font-bold text-slate-200">
-            IITB-NC-01
+            TrityaLok 3D Scan • {building.name}
           </span>
-          <span className="text-slate-600">|</span>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setSelectedFloorId('all')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                selectedFloorId === 'all'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-cyan-glow'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              All Floors
-            </button>
-            <button
-              onClick={() => setSelectedFloorId(1)}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                selectedFloorId === 1
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-cyan-glow'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              L1 (Ground)
-            </button>
-            <button
-              onClick={() => setSelectedFloorId(2)}
-              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                selectedFloorId === 2
-                  ? 'bg-violet-500/20 text-violet-300 border border-violet-500/50 shadow-violet-glow'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              L2 (Upper)
-            </button>
-          </div>
         </div>
+      </div>
 
-        {/* Right: Camera Mode & View Controls */}
-        <div className="pointer-events-auto flex items-center gap-1.5 bg-[#0B0F19]/90 backdrop-blur-2xl p-1.5 rounded-2xl border border-[#1F293D] shadow-2xl">
-          {/* 3D Orbit vs Top-Down Floorplan */}
+      {/* ── TOP RIGHT CONTROLS ── */}
+      <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+        <div className="flex items-center gap-1.5 bg-[#0B0F19]/90 backdrop-blur-2xl p-1.5 rounded-2xl border border-[#1F293D] shadow-2xl">
+          {/* Walk / Orbit toggle */}
           <button
-            onClick={() => {
-              setViewMode(viewMode === 'floorplan' ? 'explore' : 'floorplan');
-              setControlsMode('orbit');
-            }}
-            title="Toggle Top-Down Floorplan"
-            className={`px-3 py-1.5 rounded-xl transition-all text-xs font-bold flex items-center gap-1.5 ${
-              viewMode === 'floorplan'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-cyan-glow'
-                : 'text-slate-400 hover:text-white'
+            onClick={() => setWalkMode(!walkMode)}
+            title={walkMode ? 'Switch to Orbit' : 'Switch to Walk (WASD)'}
+            className={`p-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              walkMode
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50'
+                : 'text-slate-400 hover:text-white hover:bg-[#172033]'
             }`}
           >
-            <Layers className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">2D Plan</span>
+            <Footprints className="w-4 h-4" />
+            <span className="hidden sm:inline">{walkMode ? 'Walking' : 'Walk'}</span>
           </button>
 
-          {/* First Person Roaming Mode */}
-          <button
-            onClick={() => {
-              setControlsMode(controlsMode === 'firstPerson' ? 'orbit' : 'firstPerson');
-              if (controlsMode === 'orbit') setViewMode('explore');
-            }}
-            title="First-Person Roaming (WASD + Mouse)"
-            className={`px-3 py-1.5 rounded-xl transition-all text-xs font-bold flex items-center gap-1.5 ${
-              controlsMode === 'firstPerson'
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 shadow-emerald-glow animate-pulse'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <User className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">FPS Walk</span>
-          </button>
-
-          {/* Reset View */}
           <button
             onClick={resetCamera}
-            title="Reset Camera View"
-            className="p-2 text-slate-400 hover:text-white hover:bg-[#172033] rounded-xl transition-colors"
+            title="Reset View"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#172033] transition-all cursor-pointer"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
-
-          {/* Fullscreen */}
           <button
             onClick={toggleFullscreen}
-            title="Fullscreen Toggle"
-            className="p-2 text-slate-400 hover:text-white hover:bg-[#172033] rounded-xl transition-colors"
+            title="Fullscreen"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#172033] transition-all cursor-pointer"
           >
             <Maximize2 className="w-4 h-4" />
+          </button>
+
+          {/* Hidden upload - only shows small icon */}
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            title="Load Different 3D Model"
+            className="p-2 rounded-xl text-slate-600 hover:text-slate-400 hover:bg-[#172033] transition-all cursor-pointer"
+          >
+            <Upload className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
 
-      {/* BOTTOM-LEFT: LAYER TOGGLE BADGES */}
-      <div className="absolute bottom-4 left-4 flex flex-wrap items-center gap-2 pointer-events-auto z-10">
-        <button
-          onClick={() => setShowPoiLabels(!showPoiLabels)}
-          className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border flex items-center gap-1.5 transition-all backdrop-blur-2xl ${
-            showPoiLabels
-              ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300 shadow-cyan-glow'
-              : 'bg-[#0B0F19]/80 border-[#1F293D] text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>POIs</span>
-        </button>
-
-        <button
-          onClick={() => setShowNavigationPath(!showNavigationPath)}
-          className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border flex items-center gap-1.5 transition-all backdrop-blur-2xl ${
-            showNavigationPath
-              ? 'bg-violet-500/20 border-violet-500/50 text-violet-300 shadow-violet-glow'
-              : 'bg-[#0B0F19]/80 border-[#1F293D] text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <Navigation className="w-3.5 h-3.5" />
-          <span>Path</span>
-        </button>
-
-        <button
-          onClick={() => setShowObstacles(!showObstacles)}
-          className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border flex items-center gap-1.5 transition-all backdrop-blur-2xl ${
-            showObstacles
-              ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 shadow-sm'
-              : 'bg-[#0B0F19]/80 border-[#1F293D] text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <AlertTriangle className="w-3.5 h-3.5" />
-          <span>Obstacles</span>
-        </button>
-
-        <button
-          onClick={() => setShowWalkableMesh(!showWalkableMesh)}
-          className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold border flex items-center gap-1.5 transition-all backdrop-blur-2xl ${
-            showWalkableMesh
-              ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 shadow-emerald-glow'
-              : 'bg-[#0B0F19]/80 border-[#1F293D] text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <Grid className="w-3.5 h-3.5" />
-          <span>NavMesh</span>
-        </button>
-      </div>
-
-      {/* BOTTOM-RIGHT TELEMETRY HUD */}
-      <div className="absolute bottom-4 right-4 bg-[#0B0F19]/90 backdrop-blur-2xl px-4 py-2.5 rounded-2xl border border-[#1F293D] text-right text-[11px] font-mono text-slate-400 select-none pointer-events-none hidden sm:block z-10 shadow-2xl">
-        <div className="flex items-center justify-end gap-2 text-cyan-300 font-extrabold mb-0.5">
-          <Compass className="w-3.5 h-3.5 animate-spin-slow text-cyan-400" />
-          <span>AZIMUTH 042° • ELEV 2.0m</span>
-        </div>
-        <div className="text-slate-400">FRAME LATENCY: 14ms | 60 FPS</div>
-        <div className="text-slate-300 font-semibold">
-          ACTIVE A* ROUTE: {activeRoute?.success ? `${activeRoute.total_distance_meters}m` : 'STANDBY'}
-        </div>
-      </div>
-
-      {/* FIRST PERSON CROSSHAIR & HELPER TEXT */}
-      {controlsMode === 'firstPerson' && (
-        <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-20">
-          <div className="w-6 h-6 border-2 border-cyan-400/80 rounded-full flex items-center justify-center shadow-cyan-glow">
-            <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full" />
-          </div>
-          <div className="mt-5 bg-[#070A0F]/90 backdrop-blur-2xl px-5 py-2 rounded-full border border-cyan-500/40 text-xs font-mono font-bold text-cyan-300 shadow-cyan-glow">
-            Click Canvas to Lock Mouse • WASD to Walk • SHIFT to Run • ESC to Exit
-          </div>
+      {/* Walk mode instructions */}
+      {walkMode && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#0B0F19]/90 backdrop-blur-2xl px-5 py-2.5 rounded-2xl border border-cyan-500/40 shadow-2xl z-10">
+          <span className="text-xs font-mono text-cyan-300 font-bold">
+            WASD / Arrow Keys to walk • Mouse to look around • Click Walk button to exit
+          </span>
         </div>
       )}
     </div>

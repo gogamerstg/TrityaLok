@@ -2,26 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Search,
   Building as BuildingIcon,
-  Glasses,
-  Zap,
-  MapPin,
+  Box,
   ArrowRight,
-  Sparkles,
-  Command,
-  X
+  X,
+  Menu
 } from 'lucide-react';
 import { useAppStore } from '../../store/useAppStore';
-import { POI } from '../../types';
+import { TrityaLokLogo } from '../common/TrityaLokLogo';
+import { AVAILABLE_BUILDINGS } from '../../data/sampleBuildingData';
 
 export const Header: React.FC = () => {
   const {
     building,
+    setBuilding,
     searchQuery,
     setSearchQuery,
-    setSelectedPoi,
     setActiveSection,
-    setIsArModalOpen,
-    setIsLiveDemoModalOpen,
+    setIsMobileDrawerOpen,
   } = useAppStore();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -37,25 +34,37 @@ export const Header: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const filteredPois = searchQuery.trim()
-    ? building.pois.filter(
-        (p) =>
-          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (p.room_number && p.room_number.toLowerCase().includes(searchQuery.toLowerCase())) ||
-          p.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()))
+  // Filter rooms and spaces in building for Round 1 free-roaming
+  const filteredRooms = searchQuery.trim()
+    ? building.floors.flatMap((f) =>
+        f.rooms.filter(
+          (r) =>
+            r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            r.category.toLowerCase().includes(searchQuery.toLowerCase())
+        )
       )
     : [];
 
-  const handleSelectPoi = (poi: POI) => {
-    setSelectedPoi(poi);
+  const handleSelectRoom = () => {
     setIsSearchOpen(false);
     setSearchQuery('');
     setActiveSection('twin');
   };
 
   return (
-    <header className="h-18 bg-[#070A0F]/90 backdrop-blur-2xl border-b border-[#1F293D] px-4 sm:px-6 flex items-center justify-between gap-4 z-20">
+    <header className="h-16 sm:h-18 bg-[#070A0F]/90 backdrop-blur-2xl border-b border-[#1F293D] px-3 sm:px-6 flex items-center justify-between gap-2.5 sm:gap-4 z-20">
+      {/* Mobile Menu Button & Compact Logo (< md screens) */}
+      <div className="flex md:hidden items-center gap-2">
+        <button
+          onClick={() => setIsMobileDrawerOpen(true)}
+          className="p-2 rounded-xl bg-[#111827] border border-[#1F293D] text-slate-300 hover:text-white"
+          aria-label="Open Navigation Menu"
+        >
+          <Menu className="w-5 h-5 text-cyan-400" />
+        </button>
+        <TrityaLokLogo size={32} showText={false} />
+      </div>
+
       {/* Search Bar with Auto-Suggestions */}
       <div ref={searchRef} className="relative flex-1 max-w-xl">
         <div className="relative group">
@@ -68,8 +77,8 @@ export const Header: React.FC = () => {
               setIsSearchOpen(true);
             }}
             onFocus={() => setIsSearchOpen(true)}
-            placeholder="Search POI (e.g. Computer Lab 204, Robotics Lab, Washroom, Cafe)..."
-            className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#111827]/90 border border-[#1F293D] text-xs font-medium text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 shadow-inner transition-all"
+            placeholder="Search reconstructed rooms (e.g. Living Room, Workstation, Balcony)..."
+            className="w-full pl-9 sm:pl-10 pr-9 sm:pr-10 py-2 sm:py-2.5 rounded-xl bg-[#111827]/90 border border-[#1F293D] text-[11px] sm:text-xs font-medium text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 shadow-inner transition-all"
           />
           {searchQuery && (
             <button
@@ -85,35 +94,31 @@ export const Header: React.FC = () => {
         {isSearchOpen && searchQuery.trim() && (
           <div className="absolute left-0 right-0 top-full mt-2 bg-[#0B0F19]/95 backdrop-blur-2xl border border-cyan-500/30 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-84 overflow-y-auto">
             <div className="p-3 border-b border-[#1F293D] text-[10px] font-mono text-slate-400 flex items-center justify-between bg-[#111827]/60">
-              <span className="font-semibold">{filteredPois.length} DESTINATIONS IDENTIFIED</span>
-              <span className="text-cyan-400 font-bold">CLICK TO INSPECT & FLY CAMERA</span>
+              <span className="font-semibold">{filteredRooms.length} ROOMS LOCATED</span>
+              <span className="text-cyan-400 font-bold">CLICK TO EXPLORE IN 3D</span>
             </div>
-            {filteredPois.length > 0 ? (
+            {filteredRooms.length > 0 ? (
               <div className="divide-y divide-[#1F293D]/50">
-                {filteredPois.map((poi) => (
+                {filteredRooms.map((room) => (
                   <button
-                    key={poi.id}
-                    onClick={() => handleSelectPoi(poi)}
-                    className="w-full text-left p-3.5 hover:bg-[#172033] transition-colors flex items-center justify-between group"
+                    key={room.id}
+                    onClick={handleSelectRoom}
+                    className="w-full text-left p-3.5 hover:bg-[#172033] transition-colors flex items-center justify-between group cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 group-hover:bg-cyan-500/20 transition-all shadow-sm">
-                        <MapPin className="w-4 h-4" />
+                        <Box className="w-4 h-4" />
                       </div>
                       <div>
                         <div className="text-xs font-bold text-slate-200 group-hover:text-cyan-300 transition-colors">
-                          {poi.name}
+                          {room.name}
                         </div>
                         <div className="text-[11px] text-slate-400 flex items-center gap-2 mt-0.5 font-mono">
-                          <span className="text-cyan-400 font-semibold">
-                            {poi.floor_id === 1 ? 'Floor 1 (Ground)' : 'Floor 2 (Upper)'}
-                          </span>
-                          <span>•</span>
-                          <span>{poi.category}</span>
-                          {poi.room_number && (
+                          <span className="text-cyan-400 font-semibold">{room.category}</span>
+                          {room.area_sqm > 0 && (
                             <>
                               <span>•</span>
-                              <span className="text-slate-300">Room {poi.room_number}</span>
+                              <span className="text-slate-300">{room.area_sqm} sq.m</span>
                             </>
                           )}
                         </div>
@@ -125,7 +130,7 @@ export const Header: React.FC = () => {
               </div>
             ) : (
               <div className="p-6 text-center text-xs text-slate-400">
-                No matching location for <span className="text-cyan-300 font-bold">"{searchQuery}"</span>. Try searching for "Computer", "Robotics", "Auditorium", or "Elevator".
+                No matching room found for <span className="text-cyan-300 font-bold">"{searchQuery}"</span>. Try searching for "Living Room", "Bed Room", "Kitchen", or "Workstation".
               </div>
             )}
           </div>
@@ -133,41 +138,34 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Right Controls & Quick Actions */}
-      <div className="flex items-center gap-3">
-        {/* Building Selector Chip */}
-        <div className="hidden lg:flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-[#111827]/80 border border-[#1F293D] text-xs font-mono text-slate-300 shadow-sm">
-          <BuildingIcon className="w-3.5 h-3.5 text-cyan-400" />
-          <span>IIT Bombay Complex</span>
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      <div className="flex items-center gap-1.5 sm:gap-3">
+        {/* Building Selector Dropdown (Resident Home Space vs IITB Complex) */}
+        <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-[#111827]/90 border border-cyan-500/30 text-[11px] sm:text-xs font-mono text-slate-200 shadow-sm max-w-[140px] sm:max-w-[220px] md:max-w-none">
+          <BuildingIcon className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+          <select
+            value={building.id}
+            onChange={(e) => {
+              const selected = AVAILABLE_BUILDINGS.find((b) => b.id === e.target.value);
+              if (selected) setBuilding(selected);
+            }}
+            aria-label="Select Active Building Environment"
+            className="bg-transparent text-[11px] sm:text-xs font-semibold text-cyan-300 focus:outline-none cursor-pointer border-none truncate"
+          >
+            {AVAILABLE_BUILDINGS.map((b) => (
+              <option key={b.id} value={b.id} className="bg-[#0B0F19] text-slate-200 font-sans">
+                {b.name}
+              </option>
+            ))}
+          </select>
+          <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" title="Digital Twin Active" />
         </div>
 
-        {/* AR Mode Shortcut */}
-        <button
-          onClick={() => setIsArModalOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-400 transition-all shadow-sm"
-          title="Launch Simulated AR Navigation HUD"
-        >
-          <Glasses className="w-4 h-4 text-cyan-400" />
-          <span className="hidden sm:inline">AR Mode</span>
-        </button>
-
-        {/* Live Demo Quick Action */}
-        <button
-          onClick={() => setIsLiveDemoModalOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500/20 to-rose-500/20 text-amber-300 border border-amber-500/40 hover:border-amber-300 transition-all shadow-amber-glow"
-        >
-          <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-          <span className="hidden sm:inline">Live Demo</span>
-        </button>
-
-        {/* Team Nexus Emblem */}
-        <div className="flex items-center gap-2 pl-3 border-l border-[#1F293D]">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center text-xs font-extrabold text-white shadow-cyan-glow">
-            NS
-          </div>
-          <div className="hidden md:block text-left">
-            <div className="text-xs font-bold text-slate-200 leading-tight">Team Nexus</div>
-            <div className="text-[10px] font-mono text-cyan-400 leading-tight">Techfest 2026</div>
+        {/* Team Marg Darshak Emblem */}
+        <div className="hidden sm:flex items-center gap-2 pl-2 sm:pl-3 border-l border-[#1F293D]">
+          <TrityaLokLogo size={32} showText={false} />
+          <div className="hidden lg:block text-left">
+            <div className="text-xs font-bold text-slate-200 leading-tight">Marg Darshak</div>
+            <div className="text-[10px] font-mono text-cyan-400 leading-tight">Techfest IIT Bombay</div>
           </div>
         </div>
       </div>

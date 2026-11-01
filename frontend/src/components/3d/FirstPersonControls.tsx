@@ -50,10 +50,35 @@ export const FirstPersonControls: React.FC = () => {
       isPointerLocked.current = document.pointerLockElement === gl.domElement;
     };
 
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (controlsMode !== 'firstPerson' || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+
+      euler.current.y -= dx * 0.005;
+      euler.current.x -= dy * 0.005;
+      euler.current.x = Math.max(-Math.PI / 2.5, Math.min(Math.PI / 2.5, euler.current.x));
+      camera.quaternion.setFromEuler(euler.current);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
     window.addEventListener('mousemove', handleMouseMove);
     gl.domElement.addEventListener('click', handleClick);
+    gl.domElement.addEventListener('touchstart', handleTouchStart, { passive: true });
+    gl.domElement.addEventListener('touchmove', handleTouchMove, { passive: true });
     document.addEventListener('pointerlockchange', handleLockChange);
 
     return () => {
@@ -61,6 +86,8 @@ export const FirstPersonControls: React.FC = () => {
       window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('mousemove', handleMouseMove);
       gl.domElement.removeEventListener('click', handleClick);
+      gl.domElement.removeEventListener('touchstart', handleTouchStart);
+      gl.domElement.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('pointerlockchange', handleLockChange);
       if (document.pointerLockElement === gl.domElement) {
         document.exitPointerLock();

@@ -5,14 +5,17 @@ import { Header } from './components/layout/Header';
 import { DashboardView } from './components/views/DashboardView';
 import { ScanSpaceView } from './components/views/ScanSpaceView';
 import { DigitalTwinView } from './components/views/DigitalTwinView';
-import { ExploreView } from './components/views/ExploreView';
-import { NavigationPlannerView } from './components/views/NavigationPlannerView';
+import { PathfindingView } from './components/views/PathfindingView';
+import { RadarHUDView } from './components/views/RadarHUDView';
 import { AiAssistantView } from './components/views/AiAssistantView';
-import { SpatialIntelligenceView } from './components/views/SpatialIntelligenceView';
-import { PoiDetailModal } from './components/common/PoiDetailModal';
-import { ArNavigationModal } from './components/views/ArNavigationModal';
-import { LiveDemoModal } from './components/views/LiveDemoModal';
+import { FloorPlanView } from './components/views/FloorPlanView';
+import { ArNavView } from './components/views/ArNavView';
+import { LiveMonitoringView } from './components/views/LiveMonitoringView';
+import { AnalyticsView } from './components/views/AnalyticsView';
+import { ProjectsView } from './components/views/ProjectsView';
+import { SettingsView } from './components/views/SettingsView';
 import { TechSpecsDrawer } from './components/common/TechSpecsDrawer';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
 export const App: React.FC = () => {
   const { activeSection } = useAppStore();
@@ -25,14 +28,24 @@ export const App: React.FC = () => {
         return <ScanSpaceView />;
       case 'twin':
         return <DigitalTwinView />;
-      case 'explore':
-        return <ExploreView />;
-      case 'navigation':
-        return <NavigationPlannerView />;
-      case 'ai':
+      case 'pathfinding':
+        return <PathfindingView />;
+      case 'radar':
+        return <RadarHUDView />;
+      case 'ai-assistant':
         return <AiAssistantView />;
+      case 'floorplan':
+        return <FloorPlanView />;
+      case 'ar-nav':
+        return <ArNavView />;
+      case 'live-monitoring':
+        return <LiveMonitoringView />;
       case 'analytics':
-        return <SpatialIntelligenceView />;
+        return <AnalyticsView />;
+      case 'projects':
+        return <ProjectsView />;
+      case 'settings':
+        return <SettingsView />;
       default:
         return <DashboardView />;
     }
@@ -40,7 +53,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-background text-slate-100 font-sans">
-      {/* Collapsible Sidebar */}
+      {/* Collapsible Sidebar (Desktop & Mobile Drawer) */}
       <Sidebar />
 
       {/* Main Content Area */}
@@ -48,16 +61,16 @@ export const App: React.FC = () => {
         {/* Top Header */}
         <Header />
 
-        {/* Dynamic View Body */}
-        <main className="flex-1 overflow-y-auto">
+        {/* Dynamic View Body with Mobile Bottom Padding */}
+        <main className="flex-1 overflow-y-auto pb-16 md:pb-0">
           {renderActiveSection()}
         </main>
+
+        {/* Mobile Touch Bottom Navigation Bar */}
+        <MobileBottomNav />
       </div>
 
-      {/* Global Modals & Drawers */}
-      <PoiDetailModal />
-      <ArNavigationModal />
-      <LiveDemoModal />
+      {/* Technical Architecture Drawer */}
       <TechSpecsDrawer />
     </div>
   );

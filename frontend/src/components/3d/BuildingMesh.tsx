@@ -2,9 +2,14 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useAppStore } from '../../store/useAppStore';
+import { HomeApartmentMesh } from './HomeApartmentMesh';
 
 export const BuildingMesh: React.FC = () => {
   const { building, selectedFloorId, showObstacles } = useAppStore();
+
+  if (building.id === 'home_apartment_space') {
+    return <HomeApartmentMesh />;
+  }
 
   const isF1Visible = selectedFloorId === 'all' || selectedFloorId === 1;
   const isF2Visible = selectedFloorId === 'all' || selectedFloorId === 2;

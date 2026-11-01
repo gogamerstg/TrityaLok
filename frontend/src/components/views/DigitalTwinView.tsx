@@ -41,11 +41,7 @@ export const DigitalTwinView: React.FC = () => {
   } = useAppStore();
 
   const handleRouteToPoi = () => {
-    if (!selectedPoi) return;
-    setStartNodeId('n_f1_entrance');
-    setDestinationPoiId(selectedPoi.id);
-    calculateCurrentRoute();
-    setActiveSection('navigation');
+    setActiveSection('twin');
   };
 
   const currentFloorData = building.floors.find((f) => f.id === selectedFloorId) || building.floors[0];

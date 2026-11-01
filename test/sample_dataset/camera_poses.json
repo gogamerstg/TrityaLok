@@ -1,0 +1,86 @@
+{
+  "sop_capture_session": {
+    "session_id": "SOP_HOME_RESIDENT_01",
+    "space_type": "2_BHK_RESIDENTIAL_APARTMENT",
+    "total_trajectory_length_m": 42.6,
+    "average_walking_speed_mps": 0.45,
+    "frame_sampling_rate_fps": 12,
+    "total_captured_frames": 240,
+    "average_frame_overlap_percentage": 78.4,
+    "loop_closure_detected": true
+  },
+  "trajectory_keyframes": [
+    {
+      "frame_id": "frame_0001",
+      "timestamp_ms": 0,
+      "position_m": { "x": 0.0, "y": 1.45, "z": 0.0 },
+      "rotation_quaternion": { "qw": 1.0, "qx": 0.0, "qy": 0.0, "qz": 0.0 },
+      "camera_angle_pitch_deg": -5.2,
+      "zone": "Entrance Hallway"
+    },
+    {
+      "frame_id": "frame_0030",
+      "timestamp_ms": 2500,
+      "position_m": { "x": 1.85, "y": 1.48, "z": 2.4 },
+      "rotation_quaternion": { "qw": 0.9848, "qx": 0.0, "qy": 0.1736, "qz": 0.0 },
+      "camera_angle_pitch_deg": -4.8,
+      "zone": "Living Room Foyer"
+    },
+    {
+      "frame_id": "frame_0060",
+      "timestamp_ms": 5000,
+      "position_m": { "x": 4.2, "y": 1.44, "z": 4.8 },
+      "rotation_quaternion": { "qw": 0.9238, "qx": 0.0, "qy": 0.3826, "qz": 0.0 },
+      "camera_angle_pitch_deg": -6.1,
+      "zone": "Living Room Center"
+    },
+    {
+      "frame_id": "frame_0090",
+      "timestamp_ms": 7500,
+      "position_m": { "x": 7.1, "y": 1.46, "z": 3.9 },
+      "rotation_quaternion": { "qw": 0.7071, "qx": 0.0, "qy": 0.7071, "qz": 0.0 },
+      "camera_angle_pitch_deg": -5.0,
+      "zone": "Dining / Kitchen Corridor"
+    },
+    {
+      "frame_id": "frame_0120",
+      "timestamp_ms": 10000,
+      "position_m": { "x": 8.4, "y": 1.42, "z": 0.8 },
+      "rotation_quaternion": { "qw": 0.3826, "qx": 0.0, "qy": 0.9238, "qz": 0.0 },
+      "camera_angle_pitch_deg": -4.2,
+      "zone": "Kitchen Counter & Entrance"
+    },
+    {
+      "frame_id": "frame_0150",
+      "timestamp_ms": 12500,
+      "position_m": { "x": 5.9, "y": 1.45, "z": -1.8 },
+      "rotation_quaternion": { "qw": 0.0, "qx": 0.0, "qy": 1.0, "qz": 0.0 },
+      "camera_angle_pitch_deg": -5.5,
+      "zone": "Master Bedroom Corridor"
+    },
+    {
+      "frame_id": "frame_0180",
+      "timestamp_ms": 15000,
+      "position_m": { "x": 3.1, "y": 1.47, "z": -2.6 },
+      "rotation_quaternion": { "qw": -0.3826, "qx": 0.0, "qy": 0.9238, "qz": 0.0 },
+      "camera_angle_pitch_deg": -4.9,
+      "zone": "Study / Balcony Passage"
+    },
+    {
+      "frame_id": "frame_0210",
+      "timestamp_ms": 17500,
+      "position_m": { "x": 0.8, "y": 1.45, "z": -1.2 },
+      "rotation_quaternion": { "qw": -0.7071, "qx": 0.0, "qy": 0.7071, "qz": 0.0 },
+      "camera_angle_pitch_deg": -5.1,
+      "zone": "Returning Foyer"
+    },
+    {
+      "frame_id": "frame_0240",
+      "timestamp_ms": 20000,
+      "position_m": { "x": 0.05, "y": 1.45, "z": 0.02 },
+      "rotation_quaternion": { "qw": -0.9999, "qx": 0.0, "qy": 0.012, "qz": 0.0 },
+      "camera_angle_pitch_deg": -5.2,
+      "zone": "Loop Closure at Origin"
+    }
+  ]
+}

@@ -9,17 +9,21 @@ import {
   ReconstructionJob,
   ViewMode
 } from '../types';
-import { SAMPLE_BUILDING_DATA } from '../data/sampleBuildingData';
-import { calculateAStarRoute } from '../services/pathfinding';
+import { SAMPLE_BUILDING_DATA, HOME_APARTMENT_DATA } from '../data/sampleBuildingData';
 
 export type MainSection =
   | 'dashboard'
   | 'scan'
   | 'twin'
-  | 'explore'
-  | 'navigation'
-  | 'ai'
-  | 'analytics';
+  | 'pathfinding'
+  | 'radar'
+  | 'ai-assistant'
+  | 'floorplan'
+  | 'ar-nav'
+  | 'live-monitoring'
+  | 'analytics'
+  | 'projects'
+  | 'settings';
 
 export interface ChatMessage {
   id: string;
@@ -39,6 +43,7 @@ interface AppState {
 
   // Building & floor
   building: Building;
+  setBuilding: (building: Building) => void;
   selectedFloorId: number | 'all';
   setSelectedFloorId: (floorId: number | 'all') => void;
 
@@ -47,6 +52,8 @@ interface AppState {
   setViewMode: (mode: ViewMode) => void;
   controlsMode: 'orbit' | 'firstPerson';
   setControlsMode: (mode: 'orbit' | 'firstPerson') => void;
+  lightingMode: 'cyber' | 'daylight' | 'cad';
+  setLightingMode: (mode: 'cyber' | 'daylight' | 'cad') => void;
 
   // Layer toggles
   showPoiLabels: boolean;
@@ -101,7 +108,13 @@ interface AppState {
   // Reconstruction pipeline state
   jobs: ReconstructionJob[];
   activeJob: ReconstructionJob | null;
-  startReconstructionJob: (name: string, type: 'video' | 'images' | 'sample', fileCount: number) => void;
+  startReconstructionJob: (
+    name: string,
+    type: 'video' | 'images' | 'sample',
+    fileCount: number,
+    customSizeMb?: number,
+    previewUrl?: string
+  ) => void;
 
   // AI Assistant Chat
   chatMessages: ChatMessage[];
@@ -111,7 +124,9 @@ interface AppState {
   voiceEnabled: boolean;
   setVoiceEnabled: (val: boolean) => void;
 
-  // Global Modals
+  // Global Modals & Drawers
+  isMobileDrawerOpen: boolean;
+  setIsMobileDrawerOpen: (open: boolean) => void;
   isPoiModalOpen: boolean;
   setIsPoiModalOpen: (open: boolean) => void;
   isObstacleModalOpen: boolean;
@@ -136,7 +151,24 @@ export const useAppStore = create<AppState>((set, get) => ({
   sidebarCollapsed: false,
   setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
 
-  building: SAMPLE_BUILDING_DATA,
+  building: HOME_APARTMENT_DATA,
+  setBuilding: (newBuilding) => {
+    const firstFloor = newBuilding.floors[0]?.id ?? 1;
+    const firstNode = newBuilding.nodes[0]?.id ?? '';
+    const firstPoi = newBuilding.pois[0]?.id ?? null;
+    const secondNode = newBuilding.nodes.find(n => n.poi_id === firstPoi)?.id ?? (newBuilding.nodes[1]?.id ?? null);
+    set({
+      building: newBuilding,
+      selectedFloorId: firstFloor,
+      startNodeId: firstNode,
+      destinationPoiId: firstPoi,
+      destinationNodeId: secondNode,
+      selectedPoi: null,
+      selectedRoom: null,
+      activeRoute: null,
+      isNavigating: false,
+    });
+  },
   selectedFloorId: 1,
   setSelectedFloorId: (floorId) => set({ selectedFloorId: floorId }),
 
@@ -144,6 +176,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   setViewMode: (mode) => set({ viewMode: mode }),
   controlsMode: 'orbit',
   setControlsMode: (mode) => set({ controlsMode: mode }),
+  lightingMode: 'cyber',
+  setLightingMode: (mode) => set({ lightingMode: mode }),
 
   showPoiLabels: true,
   setShowPoiLabels: (show) => set({ showPoiLabels: show }),
@@ -186,20 +220,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   setActiveRoute: (route) => set({ activeRoute: route }),
 
   calculateCurrentRoute: () => {
-    const { building, startNodeId, destinationNodeId, destinationPoiId, accessibleOnly, avoidStairs } = get();
-    let target = destinationNodeId;
-    if (!target && destinationPoiId) {
-      const node = building.nodes.find(n => n.poi_id === destinationPoiId);
-      if (node) target = node.id;
-    }
-    if (!target) return;
-
-    const route = calculateAStarRoute(building, startNodeId, target, {
-      accessibleOnly,
-      avoidStairs,
-    });
+    // Preserved for Round 2 A* Path calculation
     set({
-      activeRoute: route,
+      activeRoute: null,
       currentStepIndex: 0,
       animationProgress: 0,
       isPlayingAnimation: false,
@@ -260,7 +283,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         "[05:10] 3D Gaussian Splatting optimization (30,000 iterations)",
         "[06:40] Watertight Poisson surface mesh extracted & texture baked",
         "[07:30] GLTF/GLB optimization: Draco compression, LOD hierarchical octree",
-        "[08:00] Digital Twin published to NEXUS Spatial Engine with walkable nav-mesh"
+        "[08:00] Digital Twin published to TRITYALOK Spatial Engine with walkable nav-mesh"
       ],
       output_model_url: "/models/iitb_complex.glb",
       point_cloud_count: 1240000,
@@ -270,13 +293,14 @@ export const useAppStore = create<AppState>((set, get) => ({
   ],
   activeJob: null,
 
-  startReconstructionJob: (name, type, fileCount) => {
+  startReconstructionJob: (name, type, fileCount, customSizeMb, previewUrl) => {
+    const finalSizeMb = customSizeMb || fileCount * (type === 'video' ? 12.5 : 8.0);
     const newJob: ReconstructionJob = {
       id: `job_${Date.now()}`,
       name: name || `Scan_${new Date().toLocaleTimeString()}`,
       capture_type: type,
       file_count: fileCount,
-      total_size_mb: fileCount * (type === 'video' ? 12.5 : 8.0),
+      total_size_mb: Math.round(finalSizeMb * 10) / 10,
       status: 'ingesting',
       progress_percentage: 5,
       current_stage: 'Image Ingestion & Quality Validation',
@@ -285,8 +309,10 @@ export const useAppStore = create<AppState>((set, get) => ({
       created_at: new Date().toISOString().replace('T', ' ').substring(0, 19),
       logs: [
         `[00:00] Initialized capture processing pipeline for ${fileCount} frames (${type})`,
-        `[00:02] Checking motion blur and exposure variance across dataset...`,
+        `[00:02] Ingesting media payload (${Math.round(finalSizeMb * 10) / 10} MB)...`,
+        `[00:03] Checking motion blur and exposure variance across dataset...`,
       ],
+      output_model_url: previewUrl || "/models/iitb_complex.glb",
       point_cloud_count: 0,
       mesh_vertex_count: 0,
       gaussian_splat_count: 0,
@@ -311,7 +337,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       { status: 'surface_reconstruction', stageName: 'Surface Reconstruction', progress: 72, log: 'Screened Poisson surface mesh generated: 340,000 polygon faces.' },
       { status: 'texture_generation', stageName: 'Texture Atlas Generation', progress: 85, log: 'PBR texture maps generated with ambient occlusion and roughness.' },
       { status: 'optimization_3d', stageName: '3D Optimization & Draco Compression', progress: 94, log: 'Mesh decimation and Draco compression reduced asset payload by 78%.' },
-      { status: 'completed', stageName: 'Digital Twin Published', progress: 100, log: 'Reconstruction completed successfully! 3D twin ready for interactive navigation.' },
+      { status: 'completed', stageName: 'Digital Twin Published', progress: 100, log: 'Reconstruction completed successfully! 3D twin ready for interactive navigation in TRITYALOK.' },
     ];
 
     let currentStep = 0;
@@ -335,8 +361,13 @@ export const useAppStore = create<AppState>((set, get) => ({
           mesh_vertex_count: step.progress >= 72 ? 340000 : 0,
           gaussian_splat_count: step.progress >= 58 ? 780000 : 0,
         };
+        const updatedBuilding = step.status === 'completed' && name ? {
+          ...state.building,
+          name: name.trim() || state.building.name
+        } : state.building;
         return {
           activeJob: updated,
+          building: updatedBuilding,
           jobs: state.jobs.map(j => (j.id === updated.id ? updated : j)),
         };
       });
@@ -348,7 +379,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     {
       id: 'msg_welcome',
       sender: 'nexus',
-      text: 'Greetings! I am **NEXUS**, your autonomous AI spatial intelligence assistant for the Techfest IIT Bombay Digital Twin. Ask me to find any lab, room, restroom, or calculate an obstacle-free indoor route.',
+      text: 'Greetings! I am **TrityaLok Nexus AI**, your autonomous AI spatial intelligence assistant for the Techfest IIT Bombay Digital Twin. Ask me to find any lab, room, restroom, or calculate an obstacle-free indoor route.',
       timestamp: 'Just now',
     }
   ],
@@ -367,6 +398,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   voiceEnabled: false,
   setVoiceEnabled: (val) => set({ voiceEnabled: val }),
 
+  isMobileDrawerOpen: false,
+  setIsMobileDrawerOpen: (open) => set({ isMobileDrawerOpen: open }),
   isPoiModalOpen: false,
   setIsPoiModalOpen: (open) => set({ isPoiModalOpen: open }),
   isObstacleModalOpen: false,

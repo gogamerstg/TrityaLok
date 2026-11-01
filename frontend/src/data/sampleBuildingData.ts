@@ -2,7 +2,7 @@ import { Building } from '../types';
 
 export const SAMPLE_BUILDING_DATA: Building = {
   id: "iitb_nexus_complex",
-  name: "NEXUS Innovation Complex - IIT Bombay",
+  name: "TRITYALOK Innovation Complex - IIT Bombay",
   code: "IITB-NC-01",
   institution: "Indian Institute of Technology Bombay",
   total_floors: 2,
@@ -473,3 +473,245 @@ export const SAMPLE_BUILDING_DATA: Building = {
     }
   ]
 };
+
+export const HOME_APARTMENT_DATA: Building = {
+  id: "resident_home_space",
+  name: "Resident Home / Apartment Space (SOP Mapped)",
+  code: "HOME-SOP-01",
+  institution: "Mapped via Marg Darshak Standard Operating Procedure",
+  total_floors: 1,
+  floors: [
+    {
+      id: 1,
+      name: "Ground Level (Apartment Space)",
+      elevation: 0.0,
+      boundary: [
+        { x: -16, y: 0, z: -14 },
+        { x: 16, y: 0, z: -14 },
+        { x: 16, y: 0, z: 14 },
+        { x: -16, y: 0, z: 14 }
+      ],
+      rooms: [
+        {
+          id: "home_room_living",
+          name: "Living Room & Lounge Area",
+          floor_id: 1,
+          category: "Reception",
+          poi_id: "poi_home_living",
+          area_sqm: 28.5,
+          color_code: "#00F2FE",
+          bounds: [
+            { x: -6.0, y: 0.0, z: 2.0 },
+            { x: 6.0, y: 0.0, z: 2.0 },
+            { x: 6.0, y: 0.0, z: 10.0 },
+            { x: -6.0, y: 0.0, z: 10.0 }
+          ]
+        },
+        {
+          id: "home_room_bedroom",
+          name: "Master Bedroom & Wardrobe",
+          floor_id: 1,
+          category: "Faculty Room",
+          poi_id: "poi_home_bedroom",
+          area_sqm: 22.0,
+          color_code: "#8B5CF6",
+          bounds: [
+            { x: 6.0, y: 0.0, z: -10.0 },
+            { x: 14.0, y: 0.0, z: -10.0 },
+            { x: 14.0, y: 0.0, z: 2.0 },
+            { x: 6.0, y: 0.0, z: 2.0 }
+          ]
+        },
+        {
+          id: "home_room_kitchen",
+          name: "Kitchen & Dining Counter",
+          floor_id: 1,
+          category: "Cafeteria",
+          poi_id: "poi_home_kitchen",
+          area_sqm: 16.5,
+          color_code: "#10B981",
+          bounds: [
+            { x: -14.0, y: 0.0, z: -10.0 },
+            { x: -4.0, y: 0.0, z: -10.0 },
+            { x: -4.0, y: 0.0, z: 0.0 },
+            { x: -14.0, y: 0.0, z: 0.0 }
+          ]
+        },
+        {
+          id: "home_room_study",
+          name: "Study & Workstation Zone",
+          floor_id: 1,
+          category: "Laboratory",
+          poi_id: "poi_home_study",
+          area_sqm: 14.0,
+          color_code: "#F59E0B",
+          bounds: [
+            { x: -4.0, y: 0.0, z: -10.0 },
+            { x: 4.0, y: 0.0, z: -10.0 },
+            { x: 4.0, y: 0.0, z: -2.0 },
+            { x: -4.0, y: 0.0, z: -2.0 }
+          ]
+        },
+        {
+          id: "home_room_washroom",
+          name: "Bathroom & Restroom",
+          floor_id: 1,
+          category: "Washroom",
+          poi_id: "poi_home_washroom",
+          area_sqm: 6.5,
+          color_code: "#06B6D4",
+          bounds: [
+            { x: 8.0, y: 0.0, z: 4.0 },
+            { x: 14.0, y: 0.0, z: 4.0 },
+            { x: 14.0, y: 0.0, z: 10.0 },
+            { x: 8.0, y: 0.0, z: 10.0 }
+          ]
+        }
+      ]
+    }
+  ],
+  pois: [
+    {
+      id: "poi_home_entrance",
+      name: "Main Home Entrance Door",
+      category: "Entrance",
+      floor_id: 1,
+      coordinates: { x: 0.0, y: 0.0, z: 12.0 },
+      description: "Primary entrance foyer mapped during Phase 1 of the Standard Operating Procedure.",
+      room_number: "Main Door",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["Keypad Lock", "Shoe Rack", "Intercom"],
+      tags: ["entrance", "foyer", "door", "exit"]
+    },
+    {
+      id: "poi_home_living",
+      name: "Living Room & Lounge Area",
+      category: "Reception",
+      floor_id: 1,
+      coordinates: { x: 0.0, y: 0.0, z: 6.0 },
+      description: "Central living space with sofa seating, TV console, and ambient daylight window.",
+      room_number: "Living",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["Sofa Suite", "Smart TV", "Coffee Table"],
+      tags: ["living", "hall", "sofa", "lounge"]
+    },
+    {
+      id: "poi_home_study",
+      name: "AI Workstation & Study Desk",
+      category: "Laboratory",
+      floor_id: 1,
+      coordinates: { x: 0.0, y: 0.0, z: -6.0 },
+      description: "Dedicated workstation equipped with dual monitors, GPU compute, and development rig.",
+      room_number: "Study",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["Ergonomic Chair", "Dual Monitors", "Hi-Speed WiFi"],
+      tags: ["study", "computer", "desk", "work"]
+    },
+    {
+      id: "poi_home_kitchen",
+      name: "Modular Kitchen & Dining",
+      category: "Cafeteria",
+      floor_id: 1,
+      coordinates: { x: -8.0, y: 0.0, z: -5.0 },
+      description: "Fully equipped kitchen with dining table, induction cooktop, and refrigerator.",
+      room_number: "Kitchen",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["Dining Table", "Refrigerator", "Microwave"],
+      tags: ["kitchen", "food", "dining", "cook"]
+    },
+    {
+      id: "poi_home_bedroom",
+      name: "Master Bedroom & Wardrobe",
+      category: "Faculty Room",
+      floor_id: 1,
+      coordinates: { x: 10.0, y: 0.0, z: -4.0 },
+      description: "Quiet master bedroom with king bed, side tables, and wardrobe storage.",
+      room_number: "Bedroom",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["King Bed", "Wardrobe", "AC Unit"],
+      tags: ["bedroom", "bed", "rest", "sleep"]
+    },
+    {
+      id: "poi_home_washroom",
+      name: "Bathroom & Restroom",
+      category: "Washroom",
+      floor_id: 1,
+      coordinates: { x: 11.0, y: 0.0, z: 7.0 },
+      description: "Clean restroom with hot water geyser, mirror vanity, and ventilation.",
+      room_number: "Bath 1",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["Shower", "Mirror Vanity", "Geyser"],
+      tags: ["washroom", "toilet", "bath", "restroom"]
+    },
+    {
+      id: "poi_home_balcony",
+      name: "Sunset Balcony Deck",
+      category: "Emergency Exit",
+      floor_id: 1,
+      coordinates: { x: 0.0, y: 0.0, z: -12.0 },
+      description: "Open-air balcony with planters and natural ventilation.",
+      room_number: "Balcony",
+      accessibility: true,
+      current_status: "Open",
+      related_facilities: ["Plant Stand", "Balcony Railing"],
+      tags: ["balcony", "terrace", "fresh air"]
+    }
+  ],
+  nodes: [
+    { id: "n_h_entrance", name: "Apartment Entrance", coordinates: { x: 0.0, y: 0.0, z: 12.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_entrance" },
+    { id: "n_h_foyer", name: "Entry Foyer Corridor", coordinates: { x: 0.0, y: 0.0, z: 9.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_living_center", name: "Living Room Center", coordinates: { x: 0.0, y: 0.0, z: 6.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_living" },
+    { id: "n_h_living_east", name: "Living East Passage", coordinates: { x: 6.0, y: 0.0, z: 6.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_washroom_door", name: "Washroom Door", coordinates: { x: 10.0, y: 0.0, z: 7.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_washroom" },
+    { id: "n_h_corridor_central", name: "Central Hallway Hub", coordinates: { x: 0.0, y: 0.0, z: 0.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_kitchen_door", name: "Kitchen Entryway", coordinates: { x: -6.0, y: 0.0, z: 0.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_kitchen_inside", name: "Kitchen Counter", coordinates: { x: -8.0, y: 0.0, z: -5.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_kitchen" },
+    { id: "n_h_study_door", name: "Study Room Entrance", coordinates: { x: 0.0, y: 0.0, z: -3.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_study_desk", name: "Study Workstation", coordinates: { x: 0.0, y: 0.0, z: -6.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_study" },
+    { id: "n_h_bedroom_door", name: "Master Bedroom Door", coordinates: { x: 6.0, y: 0.0, z: 0.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_bedroom_inside", name: "Master Bed Area", coordinates: { x: 10.0, y: 0.0, z: -4.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_bedroom" },
+    { id: "n_h_balcony_door", name: "Balcony Access Slider", coordinates: { x: 0.0, y: 0.0, z: -10.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: false },
+    { id: "n_h_balcony_inside", name: "Balcony Deck", coordinates: { x: 0.0, y: 0.0, z: -12.0 }, floor_id: 1, walkable: true, is_transit: false, is_poi: true, poi_id: "poi_home_balcony" }
+  ],
+  edges: [
+    { id: "e_h_ent_foyer", source_node_id: "n_h_entrance", target_node_id: "n_h_foyer", distance: 3.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_foyer_living", source_node_id: "n_h_foyer", target_node_id: "n_h_living_center", distance: 3.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_living_east", source_node_id: "n_h_living_center", target_node_id: "n_h_living_east", distance: 6.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_east_washroom", source_node_id: "n_h_living_east", target_node_id: "n_h_washroom_door", distance: 4.2, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_living_centerhub", source_node_id: "n_h_living_center", target_node_id: "n_h_corridor_central", distance: 6.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_centerhub_kitchen", source_node_id: "n_h_corridor_central", target_node_id: "n_h_kitchen_door", distance: 6.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_kitchen_inside", source_node_id: "n_h_kitchen_door", target_node_id: "n_h_kitchen_inside", distance: 5.4, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_centerhub_study", source_node_id: "n_h_corridor_central", target_node_id: "n_h_study_door", distance: 3.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_study_desk", source_node_id: "n_h_study_door", target_node_id: "n_h_study_desk", distance: 3.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_centerhub_bed", source_node_id: "n_h_corridor_central", target_node_id: "n_h_bedroom_door", distance: 6.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_bed_inside", source_node_id: "n_h_bedroom_door", target_node_id: "n_h_bedroom_inside", distance: 5.6, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_study_balcony", source_node_id: "n_h_study_desk", target_node_id: "n_h_balcony_door", distance: 4.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false },
+    { id: "e_h_balcony_deck", source_node_id: "n_h_balcony_door", target_node_id: "n_h_balcony_inside", distance: 2.0, direction: "both", floor_id: 1, is_accessible: true, is_blocked: false }
+  ],
+  obstacles: [
+    {
+      id: "obs_h_robot_vacuum",
+      name: "Autonomous Robot Vacuum Active Cleaning",
+      floor_id: 1,
+      edge_id: "e_h_living_centerhub",
+      coordinates: { x: 0.0, y: 0.0, z: 3.0 },
+      dimensions: { x: 1.2, y: 0.4, z: 1.2 },
+      type: "maintenance",
+      severity: "blocked",
+      description: "Robot vacuum active in the living room central threshold. Traversal rerouted around furniture boundary.",
+      active: false
+    }
+  ]
+};
+
+export const AVAILABLE_BUILDINGS: Building[] = [
+  SAMPLE_BUILDING_DATA,
+  HOME_APARTMENT_DATA
+];
+

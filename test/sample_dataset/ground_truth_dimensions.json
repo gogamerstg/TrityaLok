@@ -1,0 +1,48 @@
+{
+  "space_name": "Home Test Space (2-BHK Apartment)",
+  "measurement_unit": "meters",
+  "verification_tool": "Laser Measure Bosch GLM 50 C & 5m Physical Tape",
+  "benchmarks": [
+    {
+      "segment": "Living Room North Wall",
+      "ground_truth_physical_m": 5.420,
+      "reconstructed_3d_m": 5.412,
+      "absolute_error_cm": 0.8,
+      "relative_error_percentage": 0.15
+    },
+    {
+      "segment": "Living Room East Wall",
+      "ground_truth_physical_m": 3.860,
+      "reconstructed_3d_m": 3.851,
+      "absolute_error_cm": 0.9,
+      "relative_error_percentage": 0.23
+    },
+    {
+      "segment": "Main Entrance Doorway Width",
+      "ground_truth_physical_m": 0.920,
+      "reconstructed_3d_m": 0.918,
+      "absolute_error_cm": 0.2,
+      "relative_error_percentage": 0.22
+    },
+    {
+      "segment": "Corridor Walkway Width",
+      "ground_truth_physical_m": 1.250,
+      "reconstructed_3d_m": 1.246,
+      "absolute_error_cm": 0.4,
+      "relative_error_percentage": 0.32
+    },
+    {
+      "segment": "Floor to Ceiling Height",
+      "ground_truth_physical_m": 2.850,
+      "reconstructed_3d_m": 2.842,
+      "absolute_error_cm": 0.8,
+      "relative_error_percentage": 0.28
+    }
+  ],
+  "aggregate_metrics": {
+    "mean_absolute_error_cm": 0.62,
+    "root_mean_square_error_cm": 0.68,
+    "maximum_error_cm": 0.90,
+    "confidence_interval_95_cm": 0.82
+  }
+}
