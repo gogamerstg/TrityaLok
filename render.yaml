@@ -1,12 +1,16 @@
 services:
+  # Python Backend
   - type: web
     name: trityalok-backend
-    env: python
+    runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     rootDir: backend
-  - type: static
+
+  # Static Frontend
+  - type: web
     name: trityalok-frontend
+    runtime: static
     buildCommand: npm install && npm run build
     staticPublishPath: frontend/dist
     rootDir: frontend
