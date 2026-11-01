@@ -1,5 +1,5 @@
 """
-MARG DARSHAK - Word Document Generator for Round 1 Deliverables
+TrityaLok - Word Document Generator for Round 1 Deliverables
 Techfest, IIT Bombay - Namma Space 2026
 
 Generates:
@@ -56,7 +56,7 @@ def add_header_footer(doc, title_text):
         footer = section.footer
         fp = footer.paragraphs[0]
         fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        frun = fp.add_run("Team MARG DARSHAK — Round 1 Online Submission — Confirmed & Calibrated")
+        frun = fp.add_run("Team TrityaLok — Round 1 Online Submission — Confirmed & Calibrated")
         frun.font.name = 'Calibri'
         frun.font.size = Pt(8.5)
         frun.font.color.rgb = RGBColor(120, 144, 156)
@@ -72,12 +72,12 @@ def style_paragraph(p, space_before=0, space_after=6, line_spacing=1.15):
 # ==============================================================================
 def build_technical_abstract():
     doc = docx.Document()
-    add_header_footer(doc, "TECHNICAL ABSTRACT — MARG DARSHAK")
+    add_header_footer(doc, "TECHNICAL ABSTRACT — TrityaLok")
 
     # Document Title
     p_title = doc.add_paragraph()
     style_paragraph(p_title, space_before=12, space_after=4)
-    run_title = p_title.add_run("MARG DARSHAK: Autonomous 3D Indoor Digital Twin Reconstruction & Free-Roaming Walkthrough Engine")
+    run_title = p_title.add_run("TrityaLok: Autonomous 3D Indoor Digital Twin Reconstruction & Free-Roaming Walkthrough Engine")
     run_title.font.name = 'Calibri'
     run_title.font.size = Pt(20)
     run_title.font.bold = True
@@ -102,7 +102,7 @@ def build_technical_abstract():
     style_paragraph(p_meta, 0, 0)
     r1 = p_meta.add_run("Team Entry: ")
     r1.bold = True
-    p_meta.add_run("MARG DARSHAK  |  ")
+    p_meta.add_run("TrityaLok  |  ")
     r2 = p_meta.add_run("Track: ")
     r2.bold = True
     p_meta.add_run("Round 1: 3D Reconstruction & Roaming (Online)  |  ")
@@ -120,7 +120,7 @@ def build_technical_abstract():
     p_abs.add_run(
         "Modern facility operations, indoor navigation, and accessibility auditing require high-fidelity 3D spatial representations. "
         "However, commercial LiDAR scanners cost tens of thousands of dollars and demand specialized operator training. "
-        "This paper presents MARG DARSHAK, an end-to-end framework that constructs metric-scale, photorealistic 3D indoor digital twins "
+        "This paper presents TrityaLok, an end-to-end framework that constructs metric-scale, photorealistic 3D indoor digital twins "
         "exclusively from monocular 4K smartphone video. The proposed architecture introduces: (1) a formalized Standard Operating Procedure (SOP) "
         "optimizing frame-to-frame baseline parallax and camera trajectory, (2) a 9-stage Structure-from-Motion (SfM) and 3D Gaussian Splatting pipeline, "
         "(3) laser-calibrated metric ground-truth verification demonstrating a Mean Absolute Error (MAE) of 0.62 cm, and (4) an ultra-responsive, "
@@ -323,7 +323,7 @@ def build_technical_abstract():
     p7 = doc.add_paragraph()
     style_paragraph(p7, 4, 8)
     p7.add_run(
-        "MARG DARSHAK fulfills all specifications set forth by Techfest IIT Bombay for Round 1: "
+        "TrityaLok fulfills all specifications set forth by Techfest IIT Bombay for Round 1: "
         "(1) a mathematically validated SOP for smartphone capture, (2) an automated 9-stage reconstruction pipeline achieving 0.62 cm MAE, "
         "(3) a production-grade 60 FPS free-roaming WebGL viewer, and (4) complete open documentation with reproducible test datasets. "
         "All Round 2 features (POI indexing, A* navigation, AR HUD) have been developed and quarantined in agent memory, "
@@ -490,7 +490,7 @@ def build_proof_of_concept_doc():
     p6 = doc.add_paragraph()
     style_paragraph(p6, 4, 6)
     p6.add_run(
-        "Team Name: MARG DARSHAK\n"
+        "Team Name: TrityaLok\n"
         "Competition: Techfest 2026, IIT Bombay\n"
         "Challenge Track: Namma Space — Indoor Digital Twin Challenge (Round 1: 3D Reconstruction & Roaming)\n"
         "Submission Status: Complete, Calibrated, Verified & Production-Ready."

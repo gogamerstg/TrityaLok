@@ -1,8 +1,8 @@
-# MARG DARSHAK: AI-Powered Indoor Digital Twin & Obstacle-Aware Smart Navigation Platform
+# TrityaLok: AI-Powered Indoor Digital Twin & Obstacle-Aware Smart Navigation Platform
 
 **Competition:** Namma Space — Techfest, IIT Bombay  
 **Deliverable:** Round 1 & Round 2 Technical Abstract (Comprehensive 5-Page Technical Specification)  
-**Project Name:** MARG DARSHAK  
+**Project Name:** TrityaLok  
 **Tagline:** *Scan. Understand. Explore. Navigate.*  
 **Live Web Viewer:** [https://nexus-space-iitb.netlify.app](https://nexus-space-iitb.netlify.app)  
 
@@ -12,7 +12,7 @@
 
 Modern multi-tier indoor built environments—academic campuses, healthcare facilities, research labs, and residential complexes—present severe spatial orientation challenges. Conventional 2D architectural blueprints or static floorplans lack vertical depth, cannot facilitate immersive spatial comprehension, and are inherently incapable of dynamically adapting to temporary physical barriers (e.g., ongoing corridor maintenance, spill hazards, or temporary structural scaffolding).
 
-**MARG DARSHAK** introduces a breakthrough end-to-end framework transforming ordinary handheld smartphone video and photographic captures into metric-accurate, interactive 3D digital twins. Engineered strictly according to the **Techfest IIT Bombay — Namma Space** problem statement, MARG DARSHAK provides:
+**TrityaLok** introduces a breakthrough end-to-end framework transforming ordinary handheld smartphone video and photographic captures into metric-accurate, interactive 3D digital twins. Engineered strictly according to the **Techfest IIT Bombay — Namma Space** problem statement, TrityaLok provides:
 1. **A Rigorous Standard Operating Procedure (SOP)** enabling everyday occupants to map their own home or indoor facility using commodity smartphone sensors.
 2. **A 9-Stage Photogrammetric Reconstruction Pipeline** integrating Structure-from-Motion (COLMAP SfM), Open3D dense depth-map fusion, 3D Gaussian Splatting (3DGS), and Draco-compressed glTF/GLB web asset generation.
 3. **An Interactive, 60 FPS WebGL Free-Roaming Viewer** offering 3D Orbit, 2D Orthographic Floorplan, and First-Person (WASD + mouse look) navigation across multiple building levels.
@@ -27,7 +27,7 @@ A cornerstone requirement of Round 1 is establishing a sound, repeatable SOP tha
 
 ```
 +-------------------------------------------------------------------------------+
-|                    MARG DARSHAK 5-PHASE CAPTURE SOP                           |
+|                    TrityaLok 5-PHASE CAPTURE SOP                           |
 +-------------------------------------------------------------------------------+
 | Phase 1: Environmental Preparation                                            |
 |   • Open all connecting interior doorways to establish visual line-of-sight.   |
@@ -186,4 +186,4 @@ Metric accuracy was validated by comparing reconstructed 3D dimensions against p
 
 ---
 
-*MARG DARSHAK sets a new standard for smartphone indoor digital twin reconstruction, pairing rigorous scientific photogrammetry with competition-winning WebGL user experience.*
+*TrityaLok sets a new standard for smartphone indoor digital twin reconstruction, pairing rigorous scientific photogrammetry with competition-winning WebGL user experience.*
