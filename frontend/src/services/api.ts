@@ -6,7 +6,7 @@
 import { Building, ReconstructionJob } from '../types';
 import { SAMPLE_BUILDING_DATA, HOME_APARTMENT_DATA } from '../data/sampleBuildingData';
 
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = 'https://trityalok.onrender.com';
 
 export async function fetchBuilding(): Promise<Building> {
   try {
