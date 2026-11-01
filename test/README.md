@@ -44,7 +44,7 @@ This verifies:
 
 ## 🏗️ 3. Full 3D Reconstruction Pipeline Setup Instructions
 
-The Marg Darshak 3D digital twin reconstruction pipeline follows a 9-stage modular workflow:
+The TrityaLok 3D digital twin reconstruction pipeline follows a 9-stage modular workflow:
 
 ```
 [Smartphone Video / Photos]

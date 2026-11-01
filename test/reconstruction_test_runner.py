@@ -1,5 +1,5 @@
 """
-Marg Darshak - 3D Reconstruction & SOP Validation Test Runner
+TrityaLok - 3D Reconstruction & SOP Validation Test Runner
 Evaluates photogrammetric pipeline soundess, camera trajectory baseline,
 metric dimensional fidelity, and NavMesh graph connectivity.
 

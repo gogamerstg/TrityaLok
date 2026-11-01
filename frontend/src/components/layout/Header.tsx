@@ -160,11 +160,11 @@ export const Header: React.FC = () => {
           <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" title="Digital Twin Active" />
         </div>
 
-        {/* Team Marg Darshak Emblem */}
+        {/* Team TrityaLok Emblem */}
         <div className="hidden sm:flex items-center gap-2 pl-2 sm:pl-3 border-l border-[#1F293D]">
           <TrityaLokLogo size={32} showText={false} />
           <div className="hidden lg:block text-left">
-            <div className="text-xs font-bold text-slate-200 leading-tight">Marg Darshak</div>
+            <div className="text-xs font-bold text-slate-200 leading-tight">TrityaLok </div>
             <div className="text-[10px] font-mono text-cyan-400 leading-tight">Techfest IIT Bombay</div>
           </div>
         </div>

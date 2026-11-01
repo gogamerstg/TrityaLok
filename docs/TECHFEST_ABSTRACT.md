@@ -17,7 +17,7 @@ Modern multi-tier indoor built environments—academic campuses, healthcare faci
 2. **A 9-Stage Photogrammetric Reconstruction Pipeline** integrating Structure-from-Motion (COLMAP SfM), Open3D dense depth-map fusion, 3D Gaussian Splatting (3DGS), and Draco-compressed glTF/GLB web asset generation.
 3. **An Interactive, 60 FPS WebGL Free-Roaming Viewer** offering 3D Orbit, 2D Orthographic Floorplan, and First-Person (WASD + mouse look) navigation across multiple building levels.
 4. **An Obstacle-Aware A\* Graph Navigation Engine** resolving shortest walkable routes, step-free wheelchair accessibility paths (via elevator transit), and instant alternative rerouting around blocked corridors.
-5. **A Grounded AI Spatial Assistant ("Marg Darshak")** with bidirectional voice and natural language spatial querying.
+5. **A Grounded AI Spatial Assistant ("TrityaLok ")** with bidirectional voice and natural language spatial querying.
 
 ---
 
@@ -85,7 +85,7 @@ Sampling at $12\,\text{FPS}$ with a walking speed of $0.45\,\text{m/s}$ yields a
 
 ## 3. End-to-End 9-Stage 3D Reconstruction Pipeline
 
-The Marg Darshak backend and edge processing pipeline automates photogrammetric conversion through nine modular, verifiable stages:
+The TrityaLok backend and edge processing pipeline automates photogrammetric conversion through nine modular, verifiable stages:
 
 ```
 [ Smartphone Capture ] ──> [ 1. Ingestion ] ──> [ 2. Quality Filter (Blur > 100) ]
@@ -176,7 +176,7 @@ Metric accuracy was validated by comparing reconstructed 3D dimensions against p
 
 ## 7. Competition Compliance & Deliverables Summary
 
-| Techfest Deliverable | Requirement | Marg Darshak Solution | Verification Location |
+| Techfest Deliverable | Requirement | TrityaLok Solution | Verification Location |
 |---|---|---|---|
 | **Technical Abstract PDF** | Max 5 pages detailing architecture, pipeline & SOP | Complete 5-page mathematical & architectural report | `docs/TECHFEST_ABSTRACT.md` & `TECHFEST_ABSTRACT.html` |
 | **Proof of Concept & Web Viewer Link** | Working link to free-roaming 3D web viewer | Live, 60 FPS universal deployment with Orbit, Floorplan & FPS modes | `https://nexus-space-iitb.netlify.app` |

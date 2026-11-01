@@ -3,7 +3,7 @@ MARG DARSHAK - Word Document Generator for Round 1 Deliverables
 Techfest, IIT Bombay - Namma Space 2026
 
 Generates:
-1. Technical_Abstract_Marg_Darshak.docx (5-Page IEEE Technical Abstract)
+1. Technical_Abstract_TrityaLok_.docx (5-Page IEEE Technical Abstract)
 2. Proof_of_Concept_and_Web_Viewer_Link.docx (Official Web Viewer POC & Guide)
 """
 
@@ -202,7 +202,7 @@ def build_technical_abstract():
     p3 = doc.add_paragraph()
     style_paragraph(p3, 4, 6)
     p3.add_run(
-        "The Marg Darshak reconstruction engine executes nine sequential transformation stages, converting raw video into Draco-compressed 3D assets:"
+        "The TrityaLok reconstruction engine executes nine sequential transformation stages, converting raw video into Draco-compressed 3D assets:"
     )
 
     stages = [
@@ -277,7 +277,7 @@ def build_technical_abstract():
     style_paragraph(p5, 4, 6)
     p5.add_run(
         "A 3D digital twin is only valuable if accessible across diverse hardware without complex software installations. "
-        "The Marg Darshak Web Viewer was engineered using React 19, Three.js, and WebGL 2.0 to deliver native 60 FPS rendering on laptops, tablets, and smartphones:"
+        "The TrityaLok Web Viewer was engineered using React 19, Three.js, and WebGL 2.0 to deliver native 60 FPS rendering on laptops, tablets, and smartphones:"
     )
 
     viewer_features = [
@@ -330,7 +330,7 @@ def build_technical_abstract():
         "ready for immediate branch activation upon Round 1 qualification."
     )
 
-    out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs", "Technical_Abstract_Marg_Darshak.docx"))
+    out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs", "Technical_Abstract_TrityaLok_.docx"))
     doc.save(out_path)
     print(f"[OK] Generated: {out_path}")
     return out_path
@@ -391,7 +391,7 @@ def build_proof_of_concept_doc():
     p1 = doc.add_paragraph()
     style_paragraph(p1, 4, 6)
     p1.add_run(
-        "Marg Darshak delivers a production-grade WebGL 3D digital twin platform developed specifically for the Namma Space Challenge at Techfest, IIT Bombay. "
+        "TrityaLok delivers a production-grade WebGL 3D digital twin platform developed specifically for the Namma Space Challenge at Techfest, IIT Bombay. "
         "The live web application enables competition judges, facility managers, and occupants to explore mapped resident spaces in high visual fidelity, "
         "inspect geometric reconstruction telemetry, test Standard Operating Procedure (SOP) video ingestion, and freely roam the environment in real time."
     )

@@ -179,7 +179,7 @@ export const Sidebar: React.FC = () => {
           <div className="relative w-72 max-w-[85vw] h-full bg-[#070A0F] border-r border-cyan-500/40 flex flex-col z-10 shadow-2xl overflow-y-auto">
             {/* Header */}
             <div className="flex items-center justify-between h-18 px-4 border-b border-[#1F293D] bg-[#0B0F19]/80">
-              <MargDarshakLogo size={36} showText={true} />
+              <TrityaLokLogo size={36} showText={true} />
               <button
                 onClick={() => setIsMobileDrawerOpen(false)}
                 className="p-2 rounded-xl bg-[#172033] text-slate-400 hover:text-white"

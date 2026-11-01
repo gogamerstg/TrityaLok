@@ -478,7 +478,7 @@ export const HOME_APARTMENT_DATA: Building = {
   id: "resident_home_space",
   name: "Resident Home / Apartment Space (SOP Mapped)",
   code: "HOME-SOP-01",
-  institution: "Mapped via Marg Darshak Standard Operating Procedure",
+  institution: "Mapped via TrityaLok Standard Operating Procedure",
   total_floors: 1,
   floors: [
     {
