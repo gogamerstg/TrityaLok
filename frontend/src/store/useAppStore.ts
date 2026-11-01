@@ -14,16 +14,7 @@ import { SAMPLE_BUILDING_DATA, HOME_APARTMENT_DATA } from '../data/sampleBuildin
 export type MainSection =
   | 'dashboard'
   | 'scan'
-  | 'twin'
-  | 'pathfinding'
-  | 'radar'
-  | 'ai-assistant'
-  | 'floorplan'
-  | 'ar-nav'
-  | 'live-monitoring'
-  | 'analytics'
-  | 'projects'
-  | 'settings';
+  | 'twin';
 
 export interface ChatMessage {
   id: string;

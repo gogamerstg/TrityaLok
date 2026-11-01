@@ -5,15 +5,6 @@ import { Header } from './components/layout/Header';
 import { DashboardView } from './components/views/DashboardView';
 import { ScanSpaceView } from './components/views/ScanSpaceView';
 import { DigitalTwinView } from './components/views/DigitalTwinView';
-import { PathfindingView } from './components/views/PathfindingView';
-import { RadarHUDView } from './components/views/RadarHUDView';
-import { AiAssistantView } from './components/views/AiAssistantView';
-import { FloorPlanView } from './components/views/FloorPlanView';
-import { ArNavView } from './components/views/ArNavView';
-import { LiveMonitoringView } from './components/views/LiveMonitoringView';
-import { AnalyticsView } from './components/views/AnalyticsView';
-import { ProjectsView } from './components/views/ProjectsView';
-import { SettingsView } from './components/views/SettingsView';
 import { TechSpecsDrawer } from './components/common/TechSpecsDrawer';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
@@ -28,24 +19,6 @@ export const App: React.FC = () => {
         return <ScanSpaceView />;
       case 'twin':
         return <DigitalTwinView />;
-      case 'pathfinding':
-        return <PathfindingView />;
-      case 'radar':
-        return <RadarHUDView />;
-      case 'ai-assistant':
-        return <AiAssistantView />;
-      case 'floorplan':
-        return <FloorPlanView />;
-      case 'ar-nav':
-        return <ArNavView />;
-      case 'live-monitoring':
-        return <LiveMonitoringView />;
-      case 'analytics':
-        return <AnalyticsView />;
-      case 'projects':
-        return <ProjectsView />;
-      case 'settings':
-        return <SettingsView />;
       default:
         return <DashboardView />;
     }

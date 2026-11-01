@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Proof of Concept & Web Viewer Link — TrityaLok </title>
@@ -9,11 +10,13 @@
       size: A4;
       TrityaLokin: 1.5cm;
     }
+
     * {
       box-sizing: border-box;
       TrityaLokin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
       color: #1e293b;
@@ -24,11 +27,13 @@
       max-width: 900px;
       TrityaLokin: 0 auto;
     }
+
     header {
       border-bottom: 3px solid #0284c7;
       padding-bottom: 14px;
       TrityaLokin-bottom: 22px;
     }
+
     .badge {
       display: inline-block;
       background: #e0f2fe;
@@ -41,6 +46,7 @@
       letter-spacing: 0.05em;
       TrityaLokin-bottom: 8px;
     }
+
     h1 {
       font-size: 20pt;
       font-weight: 800;
@@ -48,11 +54,13 @@
       letter-spacing: -0.02em;
       TrityaLokin-bottom: 4px;
     }
+
     .subtitle {
       font-size: 11pt;
       color: #0284c7;
       font-weight: 600;
     }
+
     .meta-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -62,9 +70,11 @@
       TrityaLokin: 18px 0 24px;
       font-size: 9.5pt;
     }
+
     .meta-box p {
       TrityaLokin: 3px 0;
     }
+
     .link-banner {
       background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
       border: 2px solid #38bdf8;
@@ -73,6 +83,7 @@
       text-align: center;
       TrityaLokin: 20px 0 28px;
     }
+
     .link-banner .label {
       font-size: 9pt;
       font-weight: 800;
@@ -81,6 +92,7 @@
       color: #0369a1;
       TrityaLokin-bottom: 4px;
     }
+
     .link-banner a {
       font-size: 16pt;
       font-weight: 800;
@@ -88,11 +100,13 @@
       text-decoration: underline;
       word-break: break-all;
     }
+
     .link-banner .subtext {
       font-size: 8.5pt;
       color: #64748b;
       TrityaLokin-top: 6px;
     }
+
     h2 {
       font-size: 13pt;
       font-weight: 700;
@@ -101,41 +115,52 @@
       padding-bottom: 6px;
       TrityaLokin: 24px 0 10px;
     }
+
     p {
       TrityaLokin-bottom: 10px;
       font-size: 10pt;
       color: #334155;
     }
-    ul, ol {
+
+    ul,
+    ol {
       TrityaLokin: 8px 0 16px 22px;
       font-size: 10pt;
       color: #334155;
     }
+
     li {
       TrityaLokin-bottom: 6px;
     }
+
     li strong {
       color: #0f172a;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       TrityaLokin: 14px 0 22px;
       font-size: 9pt;
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid #cbd5e1;
       padding: 8px 12px;
       text-align: left;
     }
+
     th {
       background: #0f172a;
       color: #ffffff;
       font-weight: 700;
     }
+
     tr:nth-child(even) {
       background: #f8fafc;
     }
+
     .print-btn {
       position: fixed;
       top: 20px;
@@ -151,16 +176,19 @@
       border: none;
       font-size: 10pt;
     }
+
     @media print {
       body {
         padding: 0;
       }
+
       .print-btn {
         display: none;
       }
     }
   </style>
 </head>
+
 <body>
   <button class="print-btn" onclick="window.print()">🖨️ Print to PDF (Ctrl + P)</button>
 
@@ -174,22 +202,33 @@
     <p><strong>Team Entry:</strong> TRITYALOK</p>
     <p><strong>Challenge Track:</strong> Namma Space — Indoor Digital Twin Challenge</p>
     <p><strong>Target Environment:</strong> Resident Home Space (2-BHK Apartment, SOP Mapped, 120 Keyframe Poses)</p>
-    <p><strong>Verification Accuracy:</strong> 0.62 cm MAE vs. Bosch Laser Ground Truth | 78.4% Overlap | 60 FPS WebGL</p>
+    <p><strong>Verification Accuracy:</strong> 0.62 cm MAE vs. Bosch Laser Ground Truth | 78.4% Overlap | 60 FPS WebGL
+    </p>
   </div>
 
   <div class="link-banner">
     <div class="label">Official Live Web Viewer (Proof of Concept)</div>
     <a href="https://TrityaLoka.netlify.app/" target="_blank">https://TrityaLoka.netlify.app/</a>
-    <div class="subtext">Zero-install client-side Three.js / WebGL app — Accessible on Mobile, Tablet, Laptop, and Desktop</div>
+    <div class="subtext">Zero-install client-side Three.js / WebGL app — Accessible on Mobile, Tablet, Laptop, and
+      Desktop</div>
   </div>
 
   <h2>1. Instructions for Competition Judges</h2>
   <p>Judges can evaluate the complete Round 1 submission scope directly inside the web browser:</p>
   <ol>
-    <li><strong>Open the Live URL:</strong> Visit <a href="https://TrityaLoka.netlify.app/">https://TrityaLoka.netlify.app/</a>. The Command Center loads immediately with verified spatial telemetry.</li>
-    <li><strong>Explore Free-Roaming Walkthrough:</strong> Click <strong>"Launch 3D Free-Roaming Walkthrough"</strong> (or open the <em>Digital Twin 3D</em> tab). Use mouse drag to rotate in Orbit mode, or click <strong>"Free-Roam"</strong> for first-person WASD navigation.</li>
-    <li><strong>Test Smartphone 3D Scan Pipeline:</strong> In the <em>Scan Space</em> tab, click <strong>[ 🎬 Load Valid 4K Sample Video ]</strong> and press <strong>"Start 9-Stage Reconstruction"</strong>. The system processes blur filtering, SIFT feature matching, point cloud extraction, and Draco compression, automatically launching the 3D twin upon completion.</li>
-    <li><strong>Inspect Technical Abstract & SOP Dataset:</strong> Access the <em>Technical Abstract</em> tab to view the 5-page IEEE document, or open <em>Test Dataset (SOP)</em> to view camera intrinsics and laser validation benchmarks.</li>
+    <li><strong>Open the Live URL:</strong> Visit <a
+        href="https://TrityaLoka.netlify.app/">https://TrityaLoka.netlify.app/</a>. The Command Center loads immediately
+      with verified spatial telemetry.</li>
+    <li><strong>Explore Free-Roaming Walkthrough:</strong> Click <strong>"Launch 3D Free-Roaming Walkthrough"</strong>
+      (or open the <em>Digital Twin 3D</em> tab). Use mouse drag to rotate in Orbit mode, or click
+      <strong>"Free-Roam"</strong> for first-person WASD navigation.</li>
+    <li><strong>Test Smartphone 3D Scan Pipeline:</strong> In the <em>Scan Space</em> tab, click <strong>[ 🎬 Load Valid
+        4K Sample Video ]</strong> and press <strong>"Start 9-Stage Reconstruction"</strong>. The system processes blur
+      filtering, SIFT feature matching, point cloud extraction, and Draco compression, automatically launching the 3D
+      twin upon completion.</li>
+    <li><strong>Inspect Technical Abstract & SOP Dataset:</strong> Access the <em>Technical Abstract</em> tab to view
+      the 5-page IEEE document, or open <em>Test Dataset (SOP)</em> to view camera intrinsics and laser validation
+      benchmarks.</li>
   </ol>
 
   <h2>2. Navigation Controls & Cross-Device Compatibility</h2>
@@ -227,8 +266,10 @@
 
   <h2>3. System Requirements</h2>
   <ul>
-    <li><strong>Supported Browsers:</strong> Google Chrome (v90+), Microsoft Edge (v90+), Apple Safari (v14+), Mozilla Firefox (v88+).</li>
-    <li><strong>Hardware Acceleration:</strong> Standard WebGL 2.0 (Integrated Intel Iris / AMD Radeon or Dedicated NVIDIA/Apple Silicon GPU).</li>
+    <li><strong>Supported Browsers:</strong> Google Chrome (v90+), Microsoft Edge (v90+), Apple Safari (v14+), Mozilla
+      Firefox (v88+).</li>
+    <li><strong>Hardware Acceleration:</strong> Standard WebGL 2.0 (Integrated Intel Iris / AMD Radeon or Dedicated
+      NVIDIA/Apple Silicon GPU).</li>
     <li><strong>Zero Native Installation:</strong> 100% browser-based with high-speed CDN delivery via Netlify.</li>
   </ul>
 
@@ -266,9 +307,11 @@
   </table>
 
   <h2>5. Submission Contacts</h2>
-  <p><strong>Team Name:</strong> TRITYALOK<br>
-  <strong>Competition:</strong> Techfest 2026, Indian Institute of Technology (IIT) Bombay<br>
-  <strong>Challenge:</strong> Namma Space — Indoor Digital Twin Challenge<br>
-  <strong>Status:</strong> Complete, Calibrated, Verified & Production-Ready.</p>
+  <p><strong></strong> TRITYALOK<br>
+    <strong>Competition:</strong> Techfest 2026, Indian Institute of Technology (IIT) Bombay<br>
+    <strong>Challenge:</strong> Namma Space — Indoor Digital Twin Challenge<br>
+    <strong>Status:</strong> Complete, Calibrated, Verified & Production-Ready.
+  </p>
 </body>
+
 </html>

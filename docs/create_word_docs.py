@@ -108,7 +108,7 @@ def build_technical_abstract():
     p_meta.add_run("Round 1: 3D Reconstruction & Roaming (Online)  |  ")
     r3 = p_meta.add_run("Live Web Viewer: ")
     r3.bold = True
-    p_meta.add_run("https://TrityaLoka.netlify.app/\n")
+    p_meta.add_run("https://trityaloka.onrender.com/\n")
     r4 = p_meta.add_run("Evaluation Dataset: ")
     r4.bold = True
     p_meta.add_run("Resident Home Space (2-BHK Apartment, 120 Keyframe Poses, Laser-Calibrated MAE 0.62 cm)")
@@ -281,7 +281,7 @@ def build_technical_abstract():
     )
 
     viewer_features = [
-        ("Zero-Plugin Universal Access: ", "Accessible on any modern web browser via Netlify CDN (https://TrityaLoka.netlify.app/) without requiring app store downloads or GPU drivers."),
+        ("Zero-Plugin Universal Access: ", "Accessible on any modern web browser via Render Cloud (https://trityaloka.onrender.com/) without requiring app store downloads or GPU drivers."),
         ("Multi-Modal Camera Directors: ", "Supports 3D Orbit (rotational inspection), 2D Top-Down Architectural Projection (planimetric spatial overview), and First-Person FPS Roam."),
         ("Cross-Device Free-Roaming: ", "On desktops, users navigate using WASD keys, Shift to accelerate, and Pointer Lock mouse look. On mobile and tablet touchscreens, an auto-layout Virtual Touch D-Pad allows intuitive one-handed walkthroughs."),
         ("Real-Time Lighting Shaders: ", "Features 3 switchable environment illumination models: Cyber Neon (high-contrast spatial geometry), Daylight Architecture (sunlight PBR shadows), and CAD Blueprint (orthogonal wireframe grid)."),
@@ -330,10 +330,13 @@ def build_technical_abstract():
         "ready for immediate branch activation upon Round 1 qualification."
     )
 
-    out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs", "Technical_Abstract_TrityaLok_.docx"))
-    doc.save(out_path)
-    print(f"[OK] Generated: {out_path}")
-    return out_path
+    out_path1 = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs", "Technical_Abstract_TrityaLok_.docx"))
+    out_path2 = os.path.abspath(r"E:\iitb namma 3d\Round1_Submission_Documents\1_Technical_Abstract_TrityaLok.docx")
+    doc.save(out_path1)
+    doc.save(out_path2)
+    print(f"[OK] Generated: {out_path1}")
+    print(f"[OK] Generated: {out_path2}")
+    return out_path1
 
 
 # ==============================================================================
@@ -375,7 +378,7 @@ def build_proof_of_concept_doc():
     r_lb.font.size = Pt(11)
     r_lb.font.color.rgb = RGBColor(15, 23, 42)
     
-    r_url = p_b.add_run("https://TrityaLoka.netlify.app/\n")
+    r_url = p_b.add_run("https://trityaloka.onrender.com/\n")
     r_url.bold = True
     r_url.font.size = Pt(16)
     r_url.font.color.rgb = RGBColor(0, 102, 204)
@@ -403,7 +406,7 @@ def build_proof_of_concept_doc():
     p2.add_run("Judges can evaluate the entire submission scope directly through the web application in four simple steps:")
 
     steps = [
-        ("Step 1 — Open the Universal Web Viewer Link: ", "Navigate to https://TrityaLoka.netlify.app/ in any web browser. The Command Center loads immediately with real-time telemetry (0.62 cm MAE, 78.4% frame overlap, 60 FPS WebGL)."),
+        ("Step 1 — Open the Universal Web Viewer Link: ", "Navigate to https://trityaloka.onrender.com/ in any web browser. The Command Center loads immediately with real-time telemetry (0.62 cm MAE, 78.4% frame overlap, 60 FPS WebGL)."),
         ("Step 2 — Launch Free-Roaming Walkthrough: ", "Click 'Launch 3D Free-Roaming Walkthrough' or select 'Digital Twin 3D' from the sidebar. Use Orbit controls to rotate the resident apartment, or click 'Free-Roam' to enter first-person WASD mode."),
         ("Step 3 — Test Smartphone 3D Scan Pipeline: ", "Navigate to the 'Scan Space (SfM)' tab. Click '[ 🎬 Load Valid 4K Sample Video ]' and press 'Start 9-Stage Reconstruction'. Watch the 9-stage telemetry progress from Image Ingestion to Draco WebGL compression, which automatically launches the 3D twin upon completion."),
         ("Step 4 — Review In-App Technical Abstract & SOP Dataset: ", "Click 'Technical Abstract' to read the 5-page IEEE abstract or press 'Print to PDF'. Click 'Test Dataset (SOP)' to inspect camera intrinsics, 120 keyframe poses, and laser ground-truth error metrics.")
@@ -473,10 +476,10 @@ def build_proof_of_concept_doc():
     p5.add_run("In accordance with Round 1 submission requirements, the following companion assets are provided:")
 
     links = [
-        ("Official Web Viewer (Proof of Concept): ", "https://TrityaLoka.netlify.app/"),
-        ("Technical Abstract (5-Page PDF): ", "https://TrityaLoka.netlify.app/TECHFEST_ABSTRACT.html (or see enclosed PDF in Google Drive)"),
+        ("Official Web Viewer (Proof of Concept): ", "https://trityaloka.onrender.com/"),
+        ("Technical Abstract (5-Page PDF): ", "https://trityaloka.onrender.com/TECHFEST_ABSTRACT.html (or see enclosed PDF in Google Drive)"),
         ("Demonstration Walkthrough Video: ", "Included inside Google Drive folder: `TrityaLok__Walkthrough_Video.mp4` (also playable in-app under Scan Space)"),
-        ("Code Repository & Test Harness: ", "Included inside Google Drive folder: `TrityaLok__round1_repo.zip` (containing `test/` directory and `reconstruction_test_runner.py`)")
+        ("Code Repository & Test Harness: ", "Included inside Google Drive folder: https://github.com/gogamerstg/TrityaLok (also archived as `4_TrityaLok_Code_Repository.zip` with test/ suite)")
     ]
     for l_t, l_u in links:
         p_l = doc.add_paragraph(style='List Bullet')
@@ -496,10 +499,13 @@ def build_proof_of_concept_doc():
         "Submission Status: Complete, Calibrated, Verified & Production-Ready."
     )
 
-    out_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs", "Proof_of_Concept_and_Web_Viewer_Link.docx"))
-    doc.save(out_path)
-    print(f"[OK] Generated: {out_path}")
-    return out_path
+    out_path1 = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "docs", "Proof_of_Concept_and_Web_Viewer_Link.docx"))
+    out_path2 = os.path.abspath(r"E:\iitb namma 3d\Round1_Submission_Documents\2_Proof_of_Concept_and_Web_Viewer_Link.docx")
+    doc.save(out_path1)
+    doc.save(out_path2)
+    print(f"[OK] Generated: {out_path1}")
+    print(f"[OK] Generated: {out_path2}")
+    return out_path1
 
 
 if __name__ == "__main__":

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+backend/__pycache__/
+__pycache__/
+*.py[cod]
+
+# Editor and Assistant metadata
+.claude/
+.vscode/
+.idea/
+*.swp
+*.folio-lock
+.folio/
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.log

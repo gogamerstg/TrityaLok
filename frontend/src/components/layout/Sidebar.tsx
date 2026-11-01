@@ -8,15 +8,7 @@ import {
   Cpu,
   Radio,
   X,
-  Sparkles,
-  Navigation,
-  Bot,
-  Map,
-  Camera,
-  Activity,
-  BarChart3,
-  FolderKanban,
-  Settings
+  Sparkles
 } from 'lucide-react';
 import { useAppStore, MainSection } from '../../store/useAppStore';
 import { TrityaLokLogo } from '../common/TrityaLokLogo';
@@ -34,17 +26,8 @@ export const Sidebar: React.FC = () => {
 
   const navItems: Array<{ id: MainSection; label: string; icon: React.ElementType; badge?: string; badgeColor?: string }> = [
     { id: 'dashboard', label: 'Command Center', icon: LayoutDashboard, badge: 'LIVE', badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30' },
-    { id: 'scan', label: 'Spatial Pipeline', icon: ScanLine, badge: '9-STAGE', badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30' },
-    { id: 'twin', label: '3D Digital Twin', icon: Box, badge: 'PBR/Roam', badgeColor: 'text-violet-400 bg-violet-500/10 border-violet-500/30' },
-    { id: 'pathfinding', label: 'A* Pathfinding', icon: Navigation, badge: 'A*', badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30' },
-    { id: 'radar', label: 'Sensor Radar HUD', icon: Radio, badge: 'Wi-Fi/BLE', badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30' },
-    { id: 'ai-assistant', label: 'AI Spatial Assistant', icon: Bot, badge: 'Nexus AI', badgeColor: 'text-pink-400 bg-pink-500/10 border-pink-500/30' },
-    { id: 'floorplan', label: '2D Floor Plan', icon: Map, badge: 'Auto-Gen', badgeColor: 'text-blue-400 bg-blue-500/10 border-blue-500/30' },
-    { id: 'ar-nav', label: 'AR Indoor Nav', icon: Camera, badge: 'AR Live', badgeColor: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30' },
-    { id: 'live-monitoring', label: 'Live Monitoring', icon: Activity, badge: 'Safety', badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30' },
-    { id: 'analytics', label: 'Analytics & Reports', icon: BarChart3, badge: 'Metrics', badgeColor: 'text-teal-400 bg-teal-500/10 border-teal-500/30' },
-    { id: 'projects', label: 'Project Manager', icon: FolderKanban, badge: 'Files', badgeColor: 'text-orange-400 bg-orange-500/10 border-orange-500/30' },
-    { id: 'settings', label: 'Settings & Calibration', icon: Settings, badge: 'Calibrate', badgeColor: 'text-slate-300 bg-slate-500/10 border-slate-500/30' },
+    { id: 'scan', label: 'Spatial Pipeline (SfM)', icon: ScanLine, badge: '9-STAGE', badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30' },
+    { id: 'twin', label: '3D Digital Twin', icon: Box, badge: 'Free-Roam', badgeColor: 'text-violet-400 bg-violet-500/10 border-violet-500/30' },
   ];
 
   return (

@@ -151,7 +151,9 @@ if os.path.exists(FRONTEND_DIST):
     async def serve_spa_fallback(full_path: str):
         if full_path.startswith("api/") or full_path in ("docs", "redoc", "openapi.json"):
             raise HTTPException(status_code=404, detail="API endpoint not found")
-        potential_file = os.path.join(FRONTEND_DIST, full_path)
+        potential_file = os.path.abspath(os.path.join(FRONTEND_DIST, full_path))
+        if not potential_file.startswith(FRONTEND_DIST):
+            raise HTTPException(status_code=403, detail="Access denied")
         if full_path and os.path.isfile(potential_file):
             return FileResponse(potential_file)
         return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))
