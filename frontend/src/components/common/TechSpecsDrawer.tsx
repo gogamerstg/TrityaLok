@@ -39,7 +39,7 @@ export const TechSpecsDrawer: React.FC = () => {
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
             <Cpu className="w-6 h-6 text-cyan-400" />
-            <span>MARG DARSHAK Technical Specifications</span>
+            <span>TRITYALOK Technical Specifications</span>
           </h2>
           <p className="text-xs text-slate-400">
             Engineered for Techfest IIT Bombay — Namma Space 3D Indoor Digital Twin Challenge.

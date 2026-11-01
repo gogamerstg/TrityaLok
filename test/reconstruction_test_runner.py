@@ -16,7 +16,7 @@ def run_evaluation():
     dataset_dir = os.path.join(base_dir, "sample_dataset")
 
     print("=" * 72)
-    print("  MARG DARSHAK: 3D RECONSTRUCTION & SOP FIDELITY EVALUATOR")
+    print("  TRITYALOK: 3D RECONSTRUCTION & SOP FIDELITY EVALUATOR")
     print("  Techfest IIT Bombay — Namma Space Round 1 & Round 2 Test Harness")
     print("=" * 72)
 

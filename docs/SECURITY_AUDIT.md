@@ -1,6 +1,6 @@
-# MARG DARSHAK — Security & Vulnerability Assessment Report
+# TRITYALOK — Security & Vulnerability Assessment Report
 
-**Project:** MARG DARSHAK (Indoor 3D Digital Twin & Autonomous Pathfinding)  
+**Project:** TRITYALOK (Indoor 3D Digital Twin & Autonomous Pathfinding)  
 **Competition:** Techfest, IIT Bombay — *Namma Space 2026*  
 **Auditor Engine:** STRIX Agent 1.7.0 & Internal Static/Dynamic Security Harness  
 **Date:** October 31, 2026  
@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary
 
-A comprehensive full-stack security evaluation was conducted across the **MARG DARSHAK** platform covering both the FastAPI asynchronous backend service and the Three.js / React WebGL client application. The assessment inspected authentication, input sanitization, injection vectors, Cross-Origin Resource Sharing (CORS), path traversal, WebSocket state security, and WebGL memory boundaries.
+A comprehensive full-stack security evaluation was conducted across the **TRITYALOK** platform covering both the FastAPI asynchronous backend service and the Three.js / React WebGL client application. The assessment inspected authentication, input sanitization, injection vectors, Cross-Origin Resource Sharing (CORS), path traversal, WebSocket state security, and WebGL memory boundaries.
 
 All components adhere to OWASP Top 10 (2025/2026) standards for Web Applications and APIs.
 
@@ -64,4 +64,4 @@ strix --target ./backend -m standard -n --fail-on high
 
 ## 5. Certification of Compliance
 
-MARG DARSHAK fulfills all institutional security guidelines stipulated by the Techfest IIT Bombay competition rules for web-accessible digital twin viewers and offline-evaluable local repositories.
+TRITYALOK fulfills all institutional security guidelines stipulated by the Techfest IIT Bombay competition rules for web-accessible digital twin viewers and offline-evaluable local repositories.

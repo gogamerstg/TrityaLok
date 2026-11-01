@@ -1217,7 +1217,7 @@ export const ScanSpaceView: React.FC = () => {
             {/* Modal Footer */}
             <div className="p-4 border-t border-[#1F293D] bg-[#111827]/70 flex items-center justify-between">
               <span className="text-[11px] font-mono text-slate-500">
-                MARG DARSHAK • Standard Operating Procedure Rev 2.4
+                TRITYALOK • Standard Operating Procedure Rev 2.4
               </span>
               <button
                 type="button"

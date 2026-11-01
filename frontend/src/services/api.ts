@@ -1,5 +1,5 @@
 /**
- * MARG DARSHAK API Client - Round 1: 3D Reconstruction & Free-Roaming
+ * TRITYALOK API Client - Round 1: 3D Reconstruction & Free-Roaming
  * Techfest IIT Bombay - Namma Space 2026
  */
 

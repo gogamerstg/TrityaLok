@@ -299,7 +299,7 @@ export const DashboardView: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-[#0B0F19]/80 backdrop-blur-xl border border-[#1F293D] shadow-lg">
           <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-300">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-cyan-glow" />
-            <span>MARG DARSHAK 3D RECONSTRUCTION ENGINE:</span>
+            <span>TRITYALOK 3D RECONSTRUCTION ENGINE:</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">

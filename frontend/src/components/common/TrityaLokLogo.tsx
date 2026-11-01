@@ -144,7 +144,7 @@ export const TrityaLokLogo: React.FC<TrityaLokLogoProps> = ({
             opacity="0.8"
           />
 
-          {/* CENTRAL GUIDING BEACON (MARG DARSHAK PULSAR) */}
+          {/* CENTRAL GUIDING BEACON (TRITYALOK PULSAR) */}
           <g filter="url(#star_bloom)">
             {/* 4-Pointed Compass Star */}
             <path

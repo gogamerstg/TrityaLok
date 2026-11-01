@@ -1,4 +1,4 @@
-# MARG DARSHAK — Test Directory & Reconstruction Setup Instructions
+# TRITYALOK — Test Directory & Reconstruction Setup Instructions
 
 > **Techfest, IIT Bombay — Namma Space 3D Indoor Digital Twin Challenge**  
 > **Target Requirement:** Round 1 Code Repository Deliverable: *"A link/folder containing setup instructions to reconstruct the model, along with sample data placed inside a test directory."*

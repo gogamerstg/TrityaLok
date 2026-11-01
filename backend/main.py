@@ -1,5 +1,5 @@
 """
-MARG DARSHAK - FastAPI Backend Service (Round 1: 3D Reconstruction & Roaming)
+TRITYALOK - FastAPI Backend Service (Round 1: 3D Reconstruction & Roaming)
 Techfest IIT Bombay - Namma Space 2026
 """
 
@@ -22,7 +22,7 @@ from models.schemas import (
 from services.reconstruction_service import ReconstructionManager
 
 app = FastAPI(
-    title="MARG DARSHAK Backend API (Round 1)",
+    title="TRITYALOK Backend API (Round 1)",
     description="3D Indoor Digital Twin Reconstruction & Free-Roaming Engine (Techfest IIT Bombay)",
     version="1.0.0",
 )
@@ -48,7 +48,7 @@ recon_manager = ReconstructionManager()
 @app.on_event("startup")
 async def startup_event():
     print("=" * 65)
-    print("  MARG DARSHAK - 3D Indoor Digital Twin & Free-Roaming Engine")
+    print("  TRITYALOK - 3D Indoor Digital Twin & Free-Roaming Engine")
     print("  Techfest IIT Bombay - Namma Space 2026 (Round 1)")
     print("  -> 3D Web App:        http://127.0.0.1:8000/")
     print("  -> Interactive Docs:  http://127.0.0.1:8000/docs")
@@ -60,7 +60,7 @@ async def startup_event():
 def health_check():
     return {
         "status": "healthy",
-        "service": "MARG DARSHAK Digital Twin Engine (Round 1)",
+        "service": "TRITYALOK Digital Twin Engine (Round 1)",
         "round": "Round 1: 3D Reconstruction & Free-Roaming",
         "version": "1.0.0",
         "venue": CURRENT_BUILDING.name,
@@ -159,7 +159,7 @@ else:
     @app.get("/")
     def serve_fallback_info():
         return {
-            "service": "MARG DARSHAK Backend API (Round 1)",
+            "service": "TRITYALOK Backend API (Round 1)",
             "status": "online",
             "docs": "/docs",
             "message": "Frontend build not detected. Please run 'npm run build' inside frontend or use 'npm run dev' on port 5173."
